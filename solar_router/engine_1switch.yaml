@@ -23,6 +23,7 @@ switch:
             id(real_power).publish_state(NAN);
             id(consumption).publish_state(NAN);
             id(power_meter_activated) = 0;
+            id(green_led).turn_off();
             id(start_tempo_counter).publish_state(NAN);
             id(stop_tempo_counter).publish_state(NAN);
             id(router_level).publish_state(0);

@@ -36,37 +36,21 @@ wifi:
 
 # This part of the script is designed to be use for customisation. It shouldn't be necessary to
 # edit other part of the script to perform configuration.
-substitutions:
-  # Power meter source -----------------------------------------------------------
-  # Define ip address of Proxy Power Meter
-  power_meter_ip_address: "192.168.1.28"
-
-  # Regulator configuration 
-  # Define GPIO pin connected to AC Dimmer for gate
-  regulator_gate_pin: GPIO4
-
-  # LEDs -------------------------------------------------------------------------
-  # Green LED is reflecting regulation status
-  # Yellow LED is reflecting power meter status
-  green_led_pin: GPIO1
-  yellow_led_pin: GPIO2
-
-  relay_regulator_gate_pin: GPIO0 
-  
 packages:
-  power_meter:
+  solar_router:
     url: https://github.com/XavierBerger/Solar-Router-for-ESPHome/
-    file: solar_router/power_meter_proxy_client.yaml
     refresh: 1d
-  engine:
-    url: https://github.com/XavierBerger/Solar-Router-for-ESPHome/
-    file: solar_router/engine_1dimmer_1bypass.yaml
-    refresh: 1d
-  regulator:
-    url: https://github.com/XavierBerger/Solar-Router-for-ESPHome/
-    file: solar_router/regulator_solid_state_relay.yaml
-    refresh: 1d
-  bypass:
-    url: https://github.com/XavierBerger/Solar-Router-for-ESPHome/
-    file: solar_router/regulator_mecanical_relay.yaml
-    refresh: 1d
+    files:
+      - name: solar_router/power_meter_proxy_client.yaml
+        vars:
+          power_meter_ip_address: "192.168.1.28"
+      - name: solar_router/engine_1dimmer_1bypass.yaml
+        vars:
+          green_led_pin: GPIO1
+          yellow_led_pin: GPIO2
+      - name: solar_router/regulator_solid_state_relay.yaml
+        vars:
+          regulator_gate_pin: GPIO4
+      - name: solar_router/regulator_mecanical_relay.yaml
+        vars:
+          relay_regulator_gate_pin: GPIO0
