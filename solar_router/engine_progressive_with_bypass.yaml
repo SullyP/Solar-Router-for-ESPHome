@@ -26,6 +26,7 @@ switch:
             id(power_meter_activated) = 0;
             id(energy_divertion).turn_off();
             id(regulator_opening).publish_state(0);
+        - script.execute: relay_regulation_control 
 
   # Define the bypass relay
   # When bypass relay is ON, the regulator opening is set to 0

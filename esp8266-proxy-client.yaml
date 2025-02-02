@@ -52,9 +52,7 @@ substitutions:
   yellow_led_pin: GPIO2
 
   relay_regulator_gate_pin: GPIO0 
-  bypass_timer_threshold: "30"
-  hide_regulators: "False"
-
+  
 packages:
   power_meter:
     url: https://github.com/XavierBerger/Solar-Router-for-ESPHome/
