@@ -36,10 +36,10 @@ switch:
     internal: ${hide_regulators}
     on_turn_on:
       then:
-        - script.execute: regulation_control
+        - script.execute: relay_regulation_control
     on_turn_off:
       then:
-        - script.execute: regulation_control
+        - script.execute: relay_regulation_control
 
 number:
   # Router level 0 OR 100

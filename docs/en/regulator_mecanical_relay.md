@@ -18,16 +18,16 @@ To use this package, add the following lines to your configuration file:
 
 ```yaml linenums="1"
 packages:
-  regulator:
+  relay_regulator:
     url: https://github.com/XavierBerger/Solar-Router-for-ESPHome/
     file: solar_router/regulator_mecanical_relay.yaml
 ```
 
-This package require the definition of pin connected to the gate of the relay : `regulator_gate_pin`
+This package require the definition of pin connected to the gate of the relay : `relay_regulator_gate_pin`
 
 ```yaml linenums="1"
 substitutions:
   # Regulator configuration ------------------------------------------------------
   # Define GPIO pin connected to the relay gate.
-  regulator_gate_pin: GPIO22
+  relay_regulator_gate_pin: GPIO22
 ```

@@ -4,7 +4,7 @@
 
 script:
   # Apply regulation on relay
-  - id: regulation_control
+  - id: relay_regulation_control
     mode: single
     then:
       lambda: |-
@@ -26,6 +26,6 @@ output:
   - platform: gpio
     id: relay_output
     pin: 
-      number: ${regulator_gate_pin}
+      number: ${relay_regulator_gate_pin}
       inverted: true
 
