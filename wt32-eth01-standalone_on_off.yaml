@@ -71,7 +71,7 @@ substitutions:
 
   # Regulator configuration ------------------------------------------------------
   # Define GPIO pin connected to mecanical relay.
-  regulator_gate_pin: GPIO14
+  relay_regulator_gate_pin: GPIO14
 
 packages:
   common:

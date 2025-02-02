@@ -4,7 +4,7 @@
 * common.yaml
 * power_meter_fronius.yaml
 * regulator_triac.yaml
-* engine.yaml
+* engine_progressive.yaml
 * energy_counter_theorical.yaml
 * temperature_limiter_DS18B20.yaml
 
@@ -17,7 +17,7 @@
 * regulator_mecanical_relay.yaml
 * temperature_limiter_home_assistant.yaml
 
-## esp32-proxy-client
+## esp8266-proxy-client
 * power_meter_proxy_client.yaml
-* engine.yaml
+* engine_progressive_with_bypass.yaml
 * regulator_solid_state_relay.yaml
