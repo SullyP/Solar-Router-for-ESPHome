@@ -7,22 +7,6 @@ This package is implementing the engine of the solar router which determines whe
 
 Engine's automatic regulation can be activated or deactivated with the activation switch.
 
-## User feedback LEDS
-
-The yellow LED is reflecting the network connection:
-
-- ***OFF*** : solar router is not connected to power supply.
-- ***ON*** : solar router is connected to the network.
-- ***blink*** : solar router is not connected to the network and is trying to reconnect.
-- ***fast blink*** : An error occurs during the reading of energy exchanged with the grid.
-
-
-The green LED is reflecting the actual configuration of regulation:
-
-- ***OFF*** : automatic regulation is deactivated.
-- ***ON*** : automatic regulation is active and is not diverting energy to the load.
-- ***blink*** : solar router is currently sending energy to the load.
-
 ## Router Level vs Regulator Opening
 
 The solar router uses two distinct but related level controls:
@@ -43,18 +27,6 @@ To use this package, add the following lines to your configuration file:
 packages:
   engine:
     url: https://github.com/XavierBerger/Solar-Router-for-ESPHome/
-    file: solar_router/engine.yaml
+    file: solar_router/engine_progressive.yaml
 ```
 
-When this package is used it is required to define the following paramater is `substitution` section as show in the example bellow:
-
-```yaml linenums="1"
-substitutions:
-  # LEDs -------------------------------------------------------------------------
-  # Green LED is reflecting regulation status
-  # Yellow LED is reflecting power meter status
-  green_led_pin: GPIO19
-  yellow_led_pin: GPIO18
-  # (Optional) Expose regulator opening to HA (hidden by default)
-  hide_regulators: "False"
-```

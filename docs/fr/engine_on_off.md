@@ -27,21 +27,6 @@ Le schéma suivant représente la consommation avec ce moteur activé :
 !!! Astuce "Ajustez finement les temps de démarrage et d'arrêt"
     Les temps de démarrage et d'arrêt déterminent la réactivité de la régulation. Ces délais doivent être finement ajustés pour éviter les oscillations. Par exemple, si vous avez une cuisinière électrique, faites attention aux délais de chauffe.
 
-## LEDs de retour utilisateur
-
-La LED jaune reflète la connexion réseau :
-
-- ***ÉTEINTE*** : le routeur solaire n'est pas connecté à l'alimentation.
-- ***ALLUMÉE*** : le routeur solaire est connecté au réseau.
-- ***CLIGNOTANTE*** : le routeur solaire n'est pas connecté au réseau et essaie de se reconnecter.
-- ***CLIGNOTEMENT RAPIDE*** : Une erreur se produit lors de la lecture de l'énergie échangée avec le réseau.
-
-La LED verte reflète la configuration actuelle de la régulation :
-
-- ***ÉTEINTE*** : la régulation automatique est désactivée.
-- ***ALLUMÉE*** : la régulation automatique est active et ne détourne pas d'énergie vers la charge.
-- ***CLIGNOTANTE*** : le routeur solaire envoie actuellement de l'énergie à la charge.
-
 ## Configuration
 
 Pour utiliser ce package, ajoutez les lignes suivantes à votre fichier de configuration :
@@ -53,13 +38,3 @@ packages:
     file: solar_router/engine_on_off.yaml
 ```
 
-Lorsque ce package est utilisé, il est nécessaire de définir le paramètre suivant dans la section `substitutions` comme montré dans l'exemple ci-dessous :
-
-```yaml linenums="1"
-substitutions:
-  # LEDs -------------------------------------------------------------------------
-  # Green LED is reflecting regulation status
-  # Yellow LED is reflecting power meter status
-  green_led_pin: GPIO19
-  yellow_led_pin: GPIO18
-```

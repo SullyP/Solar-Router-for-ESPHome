@@ -7,7 +7,7 @@ Vous souhaitez contribuer ? Vous êtes les bienvenus et vous trouverez ci-dessou
 
 Vous pouvez proposer n'importe quel matériel selon vos besoins. Si ce nouveau matériel nécessite l'utilisation de GPIO, les broches utilisées par votre matériel doivent être configurées dans la section `substitution`.
 
-Une documentation doit être ajoutée décrivant ce nouveau matériel et ses contraintes (Ex : capacités GPIO). Voir le chapitre [mettre à jour la documentation](#mettre-à-jour-la-documentation) ci-dessous.
+Une documentation doit être ajoutée décrivant ce nouveau matériel et ses contraintes (Ex : capacités GPIO). Voir le chapitre [mettre à jour la documentation](#mettre-a-jour-la-documentation) ci-dessous.
 
 ## Développer un **Package Logiciel**
 
@@ -55,7 +55,7 @@ Ce capteur est utilisé par les **Moteurs** pour obtenir la valeur de la puissan
 
 Si ce nouveau compteur de puissance nécessite une configuration spécifique, les paramètres requis doivent être ajoutés dans la section `substitution`.
 
-Une documentation doit être ajoutée décrivant le compteur de puissance et comment le configurer. Voir le chapitre [mettre à jour la documentation](#mettre-à-jour-la-documentation) ci-dessous.
+Une documentation doit être ajoutée décrivant le compteur de puissance et comment le configurer. Voir le chapitre [mettre à jour la documentation](#mettre-a-jour-la-documentation) ci-dessous.
 
 ### Développer des **Regulators**
 
@@ -86,7 +86,7 @@ Vous pouvez développer un ou plusieurs régulateurs pour travailler ensemble da
 
 Si ce nouveau compteur de puissance nécessite une configuration spécifique, les paramètres requis doivent être ajoutés dans la section `substitution`.
 
-Une documentation doit être ajoutée décrivant le compteur de puissance et comment le configurer. Voir le chapitre [mettre à jour la documentation](#mettre-à-jour-la-documentation) ci-dessous.
+Une documentation doit être ajoutée décrivant le compteur de puissance et comment le configurer. Voir le chapitre [mettre à jour la documentation](#mettre-a-jour-la-documentation) ci-dessous.
 
 ## Mettre à jour la **Documentation**
 

@@ -28,22 +28,6 @@ The following schema is representing the consumption with this engine activated:
 !!! tips "finely adjust start and stop tempo"
     The start and stop tempo determine the responsiveness of the regulation. These delays must be finely adjusted to avoid oscillations. For example, if you have an electric stove, pay attention to the heating delays.
 
-## User feedback LEDS
-
-The yellow LED is reflecting the network connection:
-
-- ***OFF*** : solar router is not connected to power supply.
-- ***ON*** : solar router is connected to the network.
-- ***blink*** : solar router is not connected to the network and is trying to reconnect.
-- ***fast blink*** : An error occurs during the reading of energy exchanged with the grid.
-
-
-The green LED is reflecting the actual configuration of regulation:
-
-- ***OFF*** : automatic regulation is deactivated.
-- ***ON*** : automatic regulation is active and is not diverting energy to the load.
-- ***blink*** : solar router is currently sending energy to the load.
-
 ## Configuration
 
 To use this package, add the following lines to your configuration file:

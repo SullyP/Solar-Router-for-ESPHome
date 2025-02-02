@@ -49,7 +49,7 @@ Un **proxy** n'a besoin que d'un package **power meter**
 
 #### Étape 2.3 : Ajouter un engine
 
-* [Régulation progressive](engine.md)  
+* [Régulation progressive](engine_progressive.md)  
   Lit l'échange de puissance avec le réseau, déterminer et appliquer le pourcentage d'ouverture du regulator.
 
 * [Régulation tout ou rien](engine_on_off.md)  
