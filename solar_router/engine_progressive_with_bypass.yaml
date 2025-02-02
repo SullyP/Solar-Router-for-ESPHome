@@ -26,21 +26,22 @@ switch:
             id(power_meter_activated) = 0;
             id(energy_divertion).turn_off();
             id(regulator_opening).publish_state(0);
+
   # Define the bypass relay
   # When bypass relay is ON, the regulator opening is set to 0
   # When bypass relay is OFF, the regulator opening is set to the value defined by the solar router
   - platform: template
-    name: "Bypass Relay"
+    name: "Energy divertion"
     id: energy_divertion
     optimistic: True
-    internal: ${hide_regulators}
-    on_turn_on:
-      then:
-        - script.execute: relay_regulation_control
-        - number.to_min: regulator_opening
-    on_turn_off:
-      then:
-        - script.execute: relay_regulation_control
+    internal: true
+
+binary_sensor:
+  - platform: template
+    name: "Bypass Relay"
+    id: bypass_relay
+    lambda: |-
+      return id(energy_divertion).state;
 
 sensor:
   # Sensor tempo decreasing to 0 before starting divertion
@@ -48,6 +49,12 @@ sensor:
     platform: template
     name: "Bypass tempo"
     unit_of_measurement: "s"
+    update_interval: 1s
+
+  - platform: template
+    name: "Regulator Opening"
+    id: regulator_opening
+    unit_of_measurement: "%"
     update_interval: 1s
 
 number:
@@ -86,16 +93,7 @@ number:
                     - light.turn_on: green_led
         - script.execute: regulation_control
 
-  - platform: template
-    name: "Regulator Opening"
-    id: regulator_opening
-    min_value: 0
-    max_value: 100
-    step: 1
-    unit_of_measurement: "%"
-    optimistic: True
-    mode: slider
-    internal: ${hide_regulators}
+
 
   # Define the number of consecutive regulations where regulator is at 100% before activating bypass relay
   # When regulator is at 100% and delta is still positive, this counter is incremented
@@ -190,4 +188,9 @@ script:
             id(energy_divertion).turn_off();
             id(regulator_opening).publish_state(id(router_level).state);
           }
-        
+      - if:
+          condition:
+            switch.is_on: energy_divertion
+          then:          
+            lambda:  id(regulator_opening).publish_state(0.0);
+      - script.execute: relay_regulation_control
