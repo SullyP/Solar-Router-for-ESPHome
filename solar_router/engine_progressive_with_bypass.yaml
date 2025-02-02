@@ -101,7 +101,7 @@ number:
   # When counter reach full_power_duration, bypass relay is activated
   # Counter is reset to 0 when regulator is not at 100% or when delta is negative
   - platform: template
-    name: "Full power duration before bypass"
+    name: "Bypass tempo"
     id: full_power_duration
     optimistic: True
     min_value: 0
