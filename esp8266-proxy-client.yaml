@@ -42,7 +42,7 @@ substitutions:
   power_meter_ip_address: "192.168.1.28"
 
   # Regulator configuration 
-  # Define GPIO pin connected to AC Dimmer for gate and zero crossing detection.
+  # Define GPIO pin connected to AC Dimmer for gate
   regulator_gate_pin: GPIO4
 
   # LEDs -------------------------------------------------------------------------
@@ -53,6 +53,7 @@ substitutions:
 
   relay_regulator_gate_pin: GPIO0 
   bypass_timer_threshold: "30"
+  hide_regulators: "False"
 
 packages:
   power_meter:
