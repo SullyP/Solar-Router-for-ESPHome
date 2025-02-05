@@ -101,7 +101,7 @@ packages:
     refresh: 1d
   engine:
     url: https://github.com/XavierBerger/Solar-Router-for-ESPHome/
-    file: solar_router/engine_progressive.yaml
+    file: solar_router/engine_1dimmer.yaml
     refresh: 1d
   energy_counter:
     url: https://github.com/XavierBerger/Solar-Router-for-ESPHome/

@@ -1,10 +1,10 @@
-# Régulation progressive avec Bypass
+# engine_1dimmer_1bypass
 
 Ce package implémente le moteur du routeur solaire qui détermine quand et quelle quantité d'énergie doit être déviée vers la charge, avec une fonction de bypass pour une efficacité maximale.
 
 Lorsque le régulateur est utilisé intensivement pendant une période prolongée, il aura tendance à surchauffer. Ce moteur est conçu pour éviter ce problème en activant un relais de bypass et en éteignant le régulateur lorsque celui-ci est ouvert à 100% pendant une période prolongée. Pour éviter le scintillement, le relais de bypass n'est activé que lorsque le régulateur est ouvert à 100% pendant un nombre consécutif de régulations.
 
-Le **régulateur avec bypass** interroge chaque seconde le compteur d'énergie pour obtenir l'énergie réelle échangée avec le réseau. Si l'énergie produite est supérieure à l'énergie consommée et dépasse l'objectif d'échange défini, le moteur déterminera le **pourcentage d'ouverture du régulateur** et l'ajustera dynamiquement pour atteindre l'objectif. Lorsque le régulateur atteint 100% pendant une période prolongée, le relais de bypass est activé pour une efficacité maximale.
+Le **engine_1dimmer_1bypass** interroge chaque seconde le compteur d'énergie pour obtenir l'énergie réelle échangée avec le réseau. Si l'énergie produite est supérieure à l'énergie consommée et dépasse l'objectif d'échange défini, le moteur déterminera le **pourcentage d'ouverture du régulateur** et l'ajustera dynamiquement pour atteindre l'objectif. Lorsque le régulateur atteint 100% pendant une période prolongée, le relais de bypass est activé pour une efficacité maximale.
 
 La régulation automatique du moteur peut être activée ou désactivée avec l'interrupteur d'activation.
 
@@ -35,9 +35,9 @@ Pour utiliser ce package, ajoutez les lignes suivantes à votre fichier de confi
 
 ```yaml linenums="1"
 packages:
-  engine_regulator_with_bypass:
+  engine_regulator_1bypass:
     url: https://github.com/XavierBerger/Solar-Router-for-ESPHome/
-    file: solar_router/engine_regulator_with_bypass.yaml
+    file: solar_router/engine_regulator_1bypass.yaml
 ```
 
 !!! tip "Ajustement du Bypass tempo"

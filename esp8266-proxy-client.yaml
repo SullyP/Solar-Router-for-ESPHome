@@ -60,7 +60,7 @@ packages:
     refresh: 1d
   engine:
     url: https://github.com/XavierBerger/Solar-Router-for-ESPHome/
-    file: solar_router/engine_progressive_with_bypass.yaml
+    file: solar_router/engine_1dimmer_1bypass.yaml
     refresh: 1d
   regulator:
     url: https://github.com/XavierBerger/Solar-Router-for-ESPHome/

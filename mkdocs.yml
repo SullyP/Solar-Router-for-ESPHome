@@ -27,9 +27,9 @@ nav:
       - Mecanical relay: regulator_mecanical_relay.md
   - Engine: 
       - Overview: engine.md
-      - Progressive regulation: engine_progressive.md
-      - Progressive with bypass: engine_progressive_with_bypass.md
-      - ON/OFF regulation: engine_on_off.md
+      - 1 x dimmer: engine_1dimmer.md
+      - 1 x dimmer + bypass: engine_1dimmer_1bypass.md
+      - 1 x switch: engine_1switch.md
   - Energy Counter: 
       - Theorical: energy_counter_theorical.md
   - Temperature limiter:

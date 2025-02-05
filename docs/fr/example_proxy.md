@@ -7,7 +7,7 @@ La configuration du **client Proxy** utilise uniquement un [compteur de puissanc
 --8<-- "esp8285-power-meter-proxy.yaml"
 ```
 
-Cette configuration du **Routeur Solaire** utilise un [compteur de puissance client Proxy](power_meter_proxy_client.md), un [régulateur Triac](regulator_triac.md) et un [moteur de routeur solaire](engine_progressive.md).
+Cette configuration du **Routeur Solaire** utilise un [compteur de puissance client Proxy](power_meter_proxy_client.md), un [régulateur Triac](regulator_triac.md) et un [moteur de routeur solaire](engine_1dimmer.md).
 
 Les broches GPIO ont été définies pour correspondre à la configuration matérielle décrite [ici](hardware.md)
 

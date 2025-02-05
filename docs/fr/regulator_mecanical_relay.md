@@ -12,7 +12,7 @@ Le schéma suivant représente le câblage du relais :
 
 !!! Attention "Soyez prudent lors du câblage et utilisez la broche Normalement Ouverte (NO)."
 
-!!! Danger "AVERTISSEMENT : Ce type de relais n'est pas compatible avec les moteurs à vitesse progressive. Utilisez-le uniquement pour [moteur ON/OFF](engine_on_off.md)"
+!!! Danger "AVERTISSEMENT : Ce type de relais n'est pas compatible avec les moteurs à vitesse progressive. Utilisez-le uniquement pour [moteur ON/OFF](engine_1switch.md)"
 
 Pour utiliser ce package, ajoutez les lignes suivantes à votre fichier de configuration :
 

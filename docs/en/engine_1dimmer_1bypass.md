@@ -1,10 +1,10 @@
-# Regulator with Bypass Engine
+# engine_1dimmer_1bypass
 
 This package implements the engine of the solar router which determines when and how much energy has to be diverted to the load, with a bypass function for maximum efficiency.
 
 When the regulator is intensively used for an extended period, the regulator will tends to overheat. This engine is designed to avoid this issue by activating a bypass relay and turning off the regulator when the regulator is opened at 100% for an extended period. To avoid flickering, the bypass relay is activated only when the regulator is opened at 100% for a number of consecutive regulation.
 
-**Regulator with Bypass engine** calls every second the power meter to get the actual energy exchanged with the grid. If energy produced is greater than energy consumed and exceeds the defined exchange target, the engine will determine the **percentage of regulator opening** and adjusts it dynamically to reach the target. When the regulator reaches 100% for an extended period, the bypass relay is activated for maximum efficiency.
+**engine_1dimmer_1bypass** calls every second the power meter to get the actual energy exchanged with the grid. If energy produced is greater than energy consumed and exceeds the defined exchange target, the engine will determine the **percentage of regulator opening** and adjusts it dynamically to reach the target. When the regulator reaches 100% for an extended period, the bypass relay is activated for maximum efficiency.
 
 Engine's automatic regulation can be activated or deactivated with the activation switch.
 
@@ -34,9 +34,9 @@ To use this package, add the following lines to your configuration file:
 
 ```yaml linenums="1"
 packages:
-  engine_regulator_with_bypass:
+  engine_regulator_1bypass:
     url: https://github.com/XavierBerger/Solar-Router-for-ESPHome/
-    file: solar_router/engine_regulator_with_bypass.yaml
+    file: solar_router/engine_regulator_1bypass.yaml
 ```
 
 !!! tip "Adjusting Bypass Tempo"

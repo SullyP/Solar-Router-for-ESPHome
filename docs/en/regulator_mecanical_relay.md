@@ -12,7 +12,7 @@ The following schematic is representing the wiring of the relay:
 
 !!! Warning "Be carefull during wiring and use the Normally Open (NO) pin."
 
-!!! Danger "WARNING : This kind of relay is not compatible with progressive engine. Only use it [engine ON/OFF](engine_on_off.md)"
+!!! Danger "WARNING : This kind of relay is not compatible with progressive engine. Only use it [engine ON/OFF](engine_1switch.md)"
 
 To use this package, add the following lines to your configuration file:
 

@@ -66,7 +66,7 @@ packages:
     refresh: 1d
   engine:
     url: https://github.com/XavierBerger/Solar-Router-for-ESPHome/
-    file: solar_router/engine_on_off.yaml
+    file: solar_router/engine_1switch.yaml
     refresh: 1d
   temperature_limiter:
     url: https://github.com/XavierBerger/Solar-Router-for-ESPHome/

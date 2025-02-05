@@ -1,14 +1,14 @@
-# ON/OFF Engine
+# engine_1switch
 
 Ce package implémente le moteur du routeur solaire qui détermine si l'énergie peut être détournée vers une charge locale ou non.
 
-Le ***ON/OFF engine*** appelle chaque seconde le compteur d'énergie pour obtenir la puissance réelle consommée. Si l'énergie envoyée au réseau est supérieure au niveau de démarrage du détournement (en W) pendant le temps de démarrage (en s), le relais est fermé pour utiliser l'énergie localement. Lorsque l'énergie envoyée au réseau atteint le niveau défini (en W) pour arrêter le détournement pendant le temps d'arrêt (en s), le relais est ouvert et la consommation locale est arrêtée.
+Le ***engine_1switch*** appelle chaque seconde le compteur d'énergie pour obtenir la puissance réelle consommée. Si l'énergie envoyée au réseau est supérieure au niveau de démarrage du détournement (en W) pendant le temps de démarrage (en s), le relais est fermé pour utiliser l'énergie localement. Lorsque l'énergie envoyée au réseau atteint le niveau défini (en W) pour arrêter le détournement pendant le temps d'arrêt (en s), le relais est ouvert et la consommation locale est arrêtée.
 
-La régulation automatique du *ON/OFF engine* peut être activée ou désactivée avec l'interrupteur d'activation.
+La régulation automatique du *engine_1switch* peut être activée ou désactivée avec l'interrupteur d'activation.
 
 Le schéma suivant représente la consommation avec ce moteur activé :
 
-![engine_on_off](images/engine_on_off.png)
+![engine_1switch](images/engine_1switch.png)
 
 **Légende :**
 
@@ -35,6 +35,6 @@ Pour utiliser ce package, ajoutez les lignes suivantes à votre fichier de confi
 packages:
   engine:
     url: https://github.com/XavierBerger/Solar-Router-for-ESPHome/
-    file: solar_router/engine_on_off.yaml
+    file: solar_router/engine_1switch.yaml
 ```
 

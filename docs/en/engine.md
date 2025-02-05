@@ -1,8 +1,12 @@
-# Solar router engine
+# Solar router engines
 
 An engine is designed to define how many and when energy has to be diverted.
 
-Different kind of engine exists whach can progressively divert energy to a load and manage an ON/OFF switch.
+Different kind of engine exists whach can progressively divert energy to a load and manage an ON/OFF switch. See details into engine's dedicated pages.
+
+!!! note "Engine naming"
+    The name of engine is reflecting how energy divertion is performed:  
+    **Example** : `engine_1dimmer_1bypass` will manage 1 dimmer managing a progressive regulation associated with a bypass relay. 
 
 
 ### User feedback LEDS
