@@ -51,10 +51,10 @@ A **proxy** just need 1 **power meter** package
 
 #### Step 2.3: Add an Engine
 
-* [Progressive Engine](engine.md)  
+* [Progressive Engine](engine_1dimmer.md)  
   Read power exchange with the grid, determine and apply the percentage of router level.
 
-* [ON/OFF Engine](engine_on_off.md)  
+* [ON/OFF Engine](engine_1switch.md)  
   Read power exchange with the grid, and start to divert energy if a threshold is reached and stop if another threshold is reached.
 
 #### Step 2.4: Add an Energy Counter (*Optional*)

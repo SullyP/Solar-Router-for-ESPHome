@@ -49,10 +49,10 @@ Un **proxy** n'a besoin que d'un package **power meter**
 
 #### Étape 2.3 : Ajouter un engine
 
-* [Régulation progressive](engine.md)  
+* [Régulation progressive](engine_1dimmer.md)  
   Lit l'échange de puissance avec le réseau, déterminer et appliquer le pourcentage d'ouverture du regulator.
 
-* [Régulation tout ou rien](engine_on_off.md)  
+* [Régulation tout ou rien](engine_1switch.md)  
   Lit l'échange de puissance avec le réseau, et commencer à détourner l'énergie si un seuil est atteint et arrêter si un autre seuil est atteint.
 
 #### Étape 2.4 : Ajouter un Compteur d'Énergie (*Optionnel*)

@@ -8,9 +8,9 @@ script:
     mode: single
     then:
       # Apply opening level on relay ldec output
-      - output.turn_on: relay_output
+      - output.turn_on: ssr_output
       - output.set_level:
-          id: relay_output
+          id: ssr_output
           level: !lambda return id(regulator_opening).state/100.0;
 
 # ----------------------------------------------------------------------------------------------------
@@ -20,6 +20,6 @@ script:
 # Control the relay through GPIO
 output:
   - platform: slow_pwm
-    id: relay_output
+    id: ssr_output
     pin: ${regulator_gate_pin}
     period: 330ms

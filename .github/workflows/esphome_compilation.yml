@@ -31,9 +31,9 @@ jobs:
         echo "hotspot_password: \"myHotspotPassword\"" >> secrets.yaml
         echo "proxy_api_encryption_key: \"8q4u9dNBGMcsPemx+Q+WzLTU+mLXHAgPsrTpGjyV1hs=\"" >> secrets.yaml
         
-    - name: Compile esp32-proxy-client.yaml
+    - name: Compile esp8266-proxy-client.yaml
       continue-on-error: true
-      run: tools/convert_to_local_source_for_ci.sh esp32-proxy-client.yaml && esphome compile work_in_progress.yaml
+      run: tools/convert_to_local_source_for_ci.sh esp8266-proxy-client.yaml && esphome compile work_in_progress.yaml
       id: conf1
     
     - name: Compile wt32-eth01-solar-water-heater.yaml

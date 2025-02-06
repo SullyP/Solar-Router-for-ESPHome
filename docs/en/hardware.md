@@ -45,5 +45,5 @@ Bill of material:
 * 1 x ESP8266 (or equivalent)
 
 !!! Note "This router has some limitation"
-    * It has to be used with ON/OFF regulation (engine_on_off.yaml) and is not compatible with variable engine
+    * It has to be used with ON/OFF regulation (engine_1switch.yaml) and is not compatible with variable engine
     * Due to the small space of memory, it doesn't support OTA update

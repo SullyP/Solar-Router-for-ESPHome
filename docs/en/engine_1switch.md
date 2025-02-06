@@ -1,15 +1,15 @@
 
-# ON/OFF Engine
+# engine_1switch
 
 This package is implementing the engine of the solar router which determines energy can be diverted to a local load or not.
 
-**ON/OFF engine** calls every second the power meter to get the actual power consumed. If energy sent to the grid is greater than the divertion start level (in W) during start tempo (in s), the relay is closed to use the energy locally. When the energy sent to the grid reach the level (in W) defined to stop the divertion during stop tempo (in s), the relay is openned and local consomption is stopped.
+**engine_1switch** calls every second the power meter to get the actual power consumed. If energy sent to the grid is greater than the divertion start level (in W) during start tempo (in s), the relay is closed to use the energy locally. When the energy sent to the grid reach the level (in W) defined to stop the divertion during stop tempo (in s), the relay is openned and local consomption is stopped.
 
-ON/OFF engine's automatic regulation can be activated or deactivated with the activation switch.
+engine_1switch's automatic regulation can be activated or deactivated with the activation switch.
 
 The following schema is representing the consumption with this engine activated:
 
-![engine_on_off](images/engine_on_off.png)
+![engine_1switch](images/engine_1switch.png)
 
 **Legend:**
 
@@ -28,22 +28,6 @@ The following schema is representing the consumption with this engine activated:
 !!! tips "finely adjust start and stop tempo"
     The start and stop tempo determine the responsiveness of the regulation. These delays must be finely adjusted to avoid oscillations. For example, if you have an electric stove, pay attention to the heating delays.
 
-## User feedback LEDS
-
-The yellow LED is reflecting the network connection:
-
-- ***OFF*** : solar router is not connected to power supply.
-- ***ON*** : solar router is connected to the network.
-- ***blink*** : solar router is not connected to the network and is trying to reconnect.
-- ***fast blink*** : An error occurs during the reading of energy exchanged with the grid.
-
-
-The green LED is reflecting the actual configuration of regulation:
-
-- ***OFF*** : automatic regulation is deactivated.
-- ***ON*** : automatic regulation is active and is not diverting energy to the load.
-- ***blink*** : solar router is currently sending energy to the load.
-
 ## Configuration
 
 To use this package, add the following lines to your configuration file:
@@ -52,7 +36,7 @@ To use this package, add the following lines to your configuration file:
 packages:
   engine:
     url: https://github.com/XavierBerger/Solar-Router-for-ESPHome/
-    file: solar_router/engine_on_off.yaml
+    file: solar_router/engine_1switch.yaml
 ```
 
 When this package is used it is required to define the following paramater is `substitution` section as show in the example bellow:

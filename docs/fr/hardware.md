@@ -45,5 +45,5 @@ Liste des composants :
 * 1 x ESP8266 (ou équivalent)
 
 !!! Note "Ce routeur a quelques limitations"
-    * Il doit être utilisé avec une regulation Tout ou Rien (engine_on_off.yaml) et n'est pas compatible avec une régulation progressive
+    * Il doit être utilisé avec une regulation Tout ou Rien (engine_1switch.yaml) et n'est pas compatible avec une régulation progressive
     * En raison de l'espace mémoire limité, il ne prend pas en charge la mise à jour OTA
