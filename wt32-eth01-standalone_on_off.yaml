@@ -5,6 +5,7 @@
 esphome:
   name: wt32-eth01-2
   friendly_name: wt32-eth01-2
+  min_version: 2025.3.2
 
 esp32:
   board: wt32-eth01
@@ -62,14 +63,14 @@ packages:
     url: https://github.com/XavierBerger/Solar-Router-for-ESPHome/
     refresh: 1d
     files:
-      - name: solar_router/common.yaml
-      - name: solar_router/power_meter_fronius.yaml
+      - path: solar_router/common.yaml
+      - path: solar_router/power_meter_fronius.yaml
         vars:
           power_meter_ip_address: "192.168.1.21"
-      - name: solar_router/regulator_mecanical_relay.yaml
+      - path: solar_router/regulator_mecanical_relay.yaml
         vars:
           relay_regulator_gate_pin: GPIO14
-      - name: solar_router/engine_1switch.yaml
+      - path: solar_router/engine_1switch.yaml
         vars:
           green_led_pin: GPIO32
           yellow_led_pin: GPIO33

@@ -5,6 +5,7 @@
 esphome:
   name: "esp8266"
   friendly_name: ESP8266
+  min_version: 2025.3.2
 
 esp8266:
   board: esp01_1m
@@ -41,16 +42,16 @@ packages:
     url: https://github.com/XavierBerger/Solar-Router-for-ESPHome/
     refresh: 1d
     files:
-      - name: solar_router/power_meter_proxy_client.yaml
+      - path: solar_router/power_meter_proxy_client.yaml
         vars:
           power_meter_ip_address: "192.168.1.28"
-      - name: solar_router/engine_1dimmer_1bypass.yaml
+      - path: solar_router/engine_1dimmer_1bypass.yaml
         vars:
           green_led_pin: GPIO1
           yellow_led_pin: GPIO2
-      - name: solar_router/regulator_solid_state_relay.yaml
+      - path: solar_router/regulator_solid_state_relay.yaml
         vars:
           regulator_gate_pin: GPIO4
-      - name: solar_router/regulator_mecanical_relay.yaml
+      - path: solar_router/regulator_mecanical_relay.yaml
         vars:
           relay_regulator_gate_pin: GPIO0

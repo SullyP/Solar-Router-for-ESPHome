@@ -5,6 +5,7 @@
 esphome:
   name: "solar-water-heater"
   friendly_name: "solar-water-heater"
+  min_version: 2025.3.2
 
 esp32:
   board: wt32-eth01
@@ -60,22 +61,23 @@ web_server:
 packages:
   solar_router:
     url: https://github.com/XavierBerger/Solar-Router-for-ESPHome/
+    ref: chore/code_update
     refresh: 1d
-    files: 
-      - name: solar_router/common.yaml
-      - name: solar_router/power_meter_fronius.yaml
+    files:
+      - path: solar_router/common.yaml
+      - path: solar_router/power_meter_fronius.yaml
         vars:
           power_meter_ip_address: "192.168.1.21"
-      - name: solar_router/regulator_triac.yaml
+      - path: solar_router/regulator_triac.yaml
         vars:
           regulator_gate_pin: GPIO17 # TXD
           regulator_zero_crossing_pin: GPIO39
-      - name: solar_router/engine_1dimmer.yaml
+      - path: solar_router/engine_1dimmer.yaml
         vars:
           green_led_pin: GPIO32 # CFG
           yellow_led_pin: GPIO14
-      - name: solar_router/energy_counter_theorical.yaml
-      - name: solar_router/temperature_limiter_DS18B20.yaml
+      - path: solar_router/energy_counter_theorical.yaml
+      - path: solar_router/temperature_limiter_DS18B20.yaml
         vars:
           DS18B20_pin: GPIO02
           temperature_update_interval: 1s
