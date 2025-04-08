@@ -22,33 +22,24 @@ jobs:
         python -m pip install --upgrade pip
         pip install esphome
 
-    - name: Create secrets file
-      run: |
-        echo "wifi_ssid: \"myWifiSsid\"" > secrets.yaml
-        echo "wifi_password: \"myWifiPassword\"" >> secrets.yaml
-        echo "ota_password: \"mySolarRouterOtaPassword\"" >> secrets.yaml
-        echo "api_encryption_key: \"8q4u9dNBGMcsPemx+Q+WzLTU+mLXHAgPsrTpGjyV1hs=\"" >> secrets.yaml
-        echo "hotspot_password: \"myHotspotPassword\"" >> secrets.yaml
-        echo "proxy_api_encryption_key: \"8q4u9dNBGMcsPemx+Q+WzLTU+mLXHAgPsrTpGjyV1hs=\"" >> secrets.yaml
-        
     - name: Compile esp8266-proxy-client.yaml
       continue-on-error: true
-      run: tools/convert_to_local_source_for_ci.sh esp8266-proxy-client.yaml && esphome compile work_in_progress.yaml
+      run: tools/convert_to_local_source.py --ci esp8266-proxy-client.yaml && esphome compile work_in_progress.yaml
       id: conf1
     
     - name: Compile wt32-eth01-solar-water-heater.yaml
       continue-on-error: true
-      run: tools/convert_to_local_source_for_ci.sh wt32-eth01-solar-water-heater.yaml && esphome compile work_in_progress.yaml
+      run: tools/convert_to_local_source.py --ci wt32-eth01-solar-water-heater.yaml && esphome compile work_in_progress.yaml
       id: conf2
       
     - name: Compile esp8266-standalone_on_off.yaml
       continue-on-error: true
-      run: tools/convert_to_local_source_for_ci.sh esp8266-standalone_on_off.yaml && esphome compile work_in_progress.yaml
+      run: tools/convert_to_local_source.py --ci esp8266-standalone_on_off.yaml && esphome compile work_in_progress.yaml
       id: conf3
       
     - name: Compile esp8285-power-meter-proxy.yaml
       continue-on-error: true
-      run: tools/convert_to_local_source_for_ci.sh esp8285-power-meter-proxy.yaml && esphome compile work_in_progress.yaml
+      run: tools/convert_to_local_source.py --ci esp8285-power-meter-proxy.yaml && esphome compile work_in_progress.yaml
       id: conf4
 
     - name: Check for compile errors
