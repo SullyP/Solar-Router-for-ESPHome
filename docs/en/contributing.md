@@ -5,7 +5,7 @@ You want to contribute? You are welcome and you will find bellow some recommenda
 
 ## Developing a **Hardware**
 
-You can propose any hardware based on your needs. If this new hardware require to use GPIO, the pins used by your hardware have to be configuration into `subsitution` section.
+You can propose any hardware based on your needs. If this new hardware require to use GPIO, the pins used by your hardware have to be configuration into `vars` section of `packages`.
 
 A documentation have be added describing this new hardware and its constraints (Ex: GPIO capabilities). See [update documentation](#update-documentation) chapter bellow.
 
@@ -53,7 +53,7 @@ sensor:
 
 This sensor is used by **Engines** to get the value of power exchanged with the grid.
 
-If this new power meter needs specific configuration, required parameters have to be added into `substitution` section.
+If this new power meter needs specific configuration, required parameters have to be added into `vars` section of `packages`.
 
 A documentation have to be added describing the power meter and how to configure it. See [update documentation](#update-documentation) chapter bellow.
 
@@ -84,7 +84,7 @@ You can develop one or multiple regulators to work together in the same system. 
 - Respond to changes in the system-wide `router_level`
 - Handle its specific hardware control logic
 
-If this new power meter needs specific configuration, required parameters have to be added into `substitution` section.
+If this new power meter needs specific configuration, required parameters have to be added into `vars` section of `packages`.
 
 A documentation have to be added describing the power meter and how to configure it. See [update documentation](#update-documentation) chapter bellow.
 

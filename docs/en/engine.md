@@ -9,7 +9,7 @@ Different kind of engine exists whach can progressively divert energy to a load 
     **Example** : `engine_1dimmer_1bypass` will manage 1 dimmer managing a progressive regulation associated with a bypass relay. 
 
 
-### User feedback LEDS
+### User feedback LEDs
 
 The yellow LED is reflecting the network connection:
 
@@ -24,13 +24,4 @@ The green LED is reflecting the actual configuration of regulation:
 - ***ON*** : automatic regulation is active and is not diverting energy to the load.
 - ***blink*** : solar router is currently sending energy to the load.
 
-The configuration of LED are performed on `substitution` section as show in the example bellow:
-
-```yaml linenums="1"
-substitutions:
-  # LEDs -------------------------------------------------------------------------
-  # Green LED is reflecting regulation status
-  # Yellow LED is reflecting power meter status
-  green_led_pin: GPIO19
-  yellow_led_pin: GPIO18
-```
+LEDs configuraton are done in engine configuration.

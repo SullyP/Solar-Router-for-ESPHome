@@ -12,9 +12,10 @@ To use this counter, add the following lines to your configuration file.
 
 ```yaml
 packages:
-  counter:
+  solar_router:
     url: https://github.com/XavierBerger/Solar-Router-for-ESPHome/
-    file: solar_router/energy_counter_theorical.yaml
+    files:
+      - path: solar_router/energy_counter_theorical.yaml
 ```
 
 !!! question "What happen if theorical energy diverted is not consumed?"

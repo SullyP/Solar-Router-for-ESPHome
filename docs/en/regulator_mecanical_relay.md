@@ -12,7 +12,7 @@ The following schematic is representing the wiring of the relay:
 
 !!! Warning "Be carefull during wiring and use the Normally Open (NO) pin."
 
-!!! Danger "WARNING : This kind of relay is not compatible with progressive engine. Only use it [engine ON/OFF](engine_1switch.md)"
+!!! Danger "This kind of relay is only use it with [Engine 1 x switch](engine_1switch.md) or [Engine 1 x dimmer + 1 x bypass](engine_1dimmer_1bypass.md)"
 
 To use this package, add the following lines to your configuration file:
 
@@ -21,7 +21,7 @@ packages:
   regulator:
     url: https://github.com/XavierBerger/Solar-Router-for-ESPHome/
     files:
-      - name: solar_router/regulator_mecanical_relay.yaml
+      - path: solar_router/regulator_mecanical_relay.yaml
         vars:
           regulator_gate_pin: GPIO22
 ```

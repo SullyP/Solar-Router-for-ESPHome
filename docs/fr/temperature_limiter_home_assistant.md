@@ -13,19 +13,16 @@ Pour utiliser ce package, ajoutez les lignes suivantes à votre fichier de confi
 packages:
   temperature_limiter:
     url: https://github.com/XavierBerger/Solar-Router-for-ESPHome/
-    file: solar_router/temperature_limiter_home_assistant.yaml
+    files:
+      - path: solar_router/temperature_limiter_home_assistant.yaml
+        vars:
+          temperature_sensor: "input_number.test_temperature"
+          red_led_pin: GPIO4
 ```
 
-Ce package doit connaître le capteur à utiliser pour obtenir la température à surveiller. Ce capteur doit être défini par `temperature_sensor` dans la section `substitutions` de votre configuration, comme dans l'exemple ci-dessous :
+Ce package doit connaître le capteur à utiliser pour obtenir la température à surveiller. Ce capteur doit être défini par `temperature_sensor` dans la section `vars` de votre configuration, comme dans l'exemple ci-dessus.
 
-```yaml linenums="1"
-substitutions:
-  # Sensor in home assistant gathering the temperature
-  temperature_sensor: sensor.hot_water_temperature
- # Safety limit LED configuration
-  red_led_inverted: "False"
-  red_led_pin: GPIO4
-```
+Additionnal optional parameters can be set into `vars` section such as `red_led_inverted` defining if the LED is active on high or low level of pin (which is set default set to `False`).
 
 !!! warning "Disponibilité des données et taux de rafraîchissement"
     Ce limiteur de température dépend de Home Assistant pour récupérer la température. Il dépend également du taux de mise à jour du capteur. Si un capteur est mis à jour trop lentement, la régulation peut ne pas fonctionner comme prévu.

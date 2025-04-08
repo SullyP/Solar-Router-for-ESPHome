@@ -32,7 +32,7 @@ packages:
   regulator:
     url: https://github.com/XavierBerger/Solar-Router-for-ESPHome/
     files:
-      - name: solar_router/regulator_solid_state_relay.yaml
+      - path: solar_router/regulator_solid_state_relay.yaml
         vars:
           regulator_gate_pin: GPIO22
 ```

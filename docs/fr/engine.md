@@ -25,13 +25,4 @@ La LED verte reflète la configuration actuelle de la régulation :
 - ***ALLUMÉE*** : la régulation automatique est active et ne détourne pas d'énergie vers la charge.
 - ***CLIGNOTANTE*** : le routeur solaire envoie actuellement de l'énergie à la charge.
 
-La configuration des LED est effectuée dans la section `substitution` comme montré dans l'exemple ci-dessous :
-
-```yaml linenums="1"
-substitutions:
-  # LEDs -------------------------------------------------------------------------
-  # Green LED is reflecting regulation status
-  # Yellow LED is reflecting power meter status
-  green_led_pin: GPIO19
-  yellow_led_pin: GPIO18
-```
+La configuration des LED est effectuée dans la configuration de l'`engine`.
