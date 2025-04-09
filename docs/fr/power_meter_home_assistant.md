@@ -7,25 +7,20 @@ Pour utiliser ce package, ajoutez les lignes suivantes à votre fichier de confi
 
 ```yaml linenums="1"
 packages:
-  power_meter:
+  solar_router:
     url: https://github.com/XavierBerger/Solar-Router-for-ESPHome/
-    file: solar_router/power_meter_home_assistant.yaml
+    files:
+      - path: solar_router/power_meter_home_assistant.yaml
+        vars:
+          main_power_sensor: "sensor.smart_meter_ts_100a_1_puissance_reelle"
+          consumption_sensor: "sensor.solarnet_power_load_consumed"
 ```
 
-Ce package doit connaître le capteur à utiliser pour obtenir l'énergie échangée avec le réseau. Il est attendu que ce capteur soit en Watts (W), qu'il soit positif (>0) lorsque l'électricité est consommée depuis le réseau et négatif (<0) lorsque l'électricité est envoyée au réseau. 
+Ce package doit connaître le capteur à utiliser pour obtenir l'énergie échangée avec le réseau et l'énergie consommé par la maison. Le capteur déchange d'énergie avec le réseau doit être défini par `main_power_sensor` et la capteur de consommation par `consumption_sensor` dans la section `substitutions` de votre configuration comme présenté dans l'exemple ci-dessus.
 
-Ce *power meter* peut aussi mettre à disposition de votre routeur solaire la consommation utilisée par votre maison. Cela peut être nécessaire, par exemple, pour le calcul de l'énergie théorique reroutée.
+* `main_power_sensor` représent l'energie echangée avec le réseau. Il est attendu que ce capteur soit en Watts (W), qu'il soit positif (>0) lorsque l'électricité est consommée depuis le réseau et négatif (<0) lorsque l'électricité est envoyée au réseau. 
 
-Le capteur déchange d'énergie avec le réseau doit être défini par `main_power_sensor` et la capteur de consommation par `consumption_sensor` dans la section `substitutions` de votre configuration, comme dans l'exemple ci-dessous :
-
-
-```yaml linenums="1"
-substitutions:
-  # Power meter source -----------------------------------------------------------
-  # Sensor in home assistant gathering the power consumption
-  main_power_sensor: sensor.main_power
-  consumption_sensor: sensor.home_consumption
-```
+* `consumption_sensor` représente l'énergie consomée par votre maison. Cette imformation permet, par exemple, le calcul de l'énergie théorique reroutée.
 
 !!! warning "Disponibilité des données et fréquence de rafraîchissement"
     Ce compteur électrique s'appuie sur Home Assistant pour recueillir la valeur de l'énergie échangée avec le réseau. Il dépend également de la fréquence de mise à jour des capteurs. Si un capteur est mis à jour trop lentement, la régulation peut ne pas fonctionner comme prévu.

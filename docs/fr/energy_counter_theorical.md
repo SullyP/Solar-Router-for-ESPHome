@@ -12,10 +12,12 @@ Pour utiliser ce compteur, ajoutez les lignes suivantes à votre fichier de conf
 
 ```yaml
 packages:
-  counter:
+  solar_router:
     url: https://github.com/XavierBerger/Solar-Router-for-ESPHome/
-    file: solar_router/energy_counter_theorical.yaml
+    files:
+      - path: solar_router/energy_counter_theorical.yaml
 ```
+
 !!! question "Que se passe-t-il si l'énergie théorique déviée n'est pas consommée ?"
     Si l'eau dans la chaudière est déjà chaude, la régulation passe à 100 %, mais aucune énergie ne sera consommée.  
     Si le compteur de puissance utilisé fournit l'énergie consommée, le compteur d'énergie détecte la situation et rapporte une consommation nulle.  

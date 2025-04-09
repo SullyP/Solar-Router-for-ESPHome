@@ -64,7 +64,7 @@ A **proxy** just need 1 **power meter** package
 
 ### Step 3: Configure your solar router
 
-Each package requires a configuration which is done in `substitution` section.  
+Each package requires a configuration which is done in `vars` section of `packages`.  
 *Refer to documentation of packages selected and add configuration to the end of your yaml file.*
 
 You can refer to examples to see how to configure your yaml for a [standalone](example_standalone.md) installation a [proxy based](example_proxy.md) installation.

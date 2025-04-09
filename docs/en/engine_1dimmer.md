@@ -1,9 +1,8 @@
-
-# engine_1dimmer
+# Engine 1 x dimmer
 
 This package is implementing the engine of the solar router which determines when and how many energy has to be diverted to the load.
 
-**engine_1dimmer** calls every second the power meter to get the actual energy exchanged with the grid. If energy produce is greater than energy consummed and exceed the define echange target, the engine will determine the **percentage of the regulator "opening"** and adjusts it dynamically to reach the target.
+**Engine 1 x dimmer** calls every second the power meter to get the actual energy exchanged with the grid. If energy produce is greater than energy consummed and exceed the define echange target, the engine will determine the **percentage of the regulator "opening"** and adjusts it dynamically to reach the target.
 
 Engine's automatic regulation can be activated or deactivated with the activation switch.
 
@@ -15,7 +14,7 @@ The solar router uses two distinct but related level controls:
 
 - **Regulator Opening**: This represents the actual opening level (0-100%) of the physical regulator. By default, it mirrors the router level since there is only one regulator. While it can be controlled independently, changes to regulator_opening alone won't affect the router_level or trigger LED state changes.
 
-The regulator opening entity is hidden from Home Assistant by default. To expose it, add this to your substitutions:
+The regulator opening entity is hidden from Home Assistant by default. To expose it, add this to your vars:
 
 Note: It's recommended to adjust the router_level rather than regulator_opening directly, as this ensures proper system feedback through LEDs and energy monitoring.
 
@@ -25,8 +24,16 @@ To use this package, add the following lines to your configuration file:
 
 ```yaml linenums="1"
 packages:
-  engine:
+  solar_router:
     url: https://github.com/XavierBerger/Solar-Router-for-ESPHome/
-    file: solar_router/engine_1dimmer.yaml
+    files:
+      - path: solar_router/engine_1dimmer.yaml
+        vars:
+          green_led_pin: GPIO32
+          green_led_inverted: 'False'
+          yellow_led_pin: GPIO14
+          yellow_led_inverted: 'False'
 ```
+
+When this package is used it is required to define `green_led_pin` and `yellow_led_pin` in `vars` section as show in the upper example. `xxx_led_inverted` can define is led is active on high or low signal and is optional.
 

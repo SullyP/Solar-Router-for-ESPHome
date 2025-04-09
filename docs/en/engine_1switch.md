@@ -1,15 +1,15 @@
 
-# engine_1switch
+# Engine 1 x switch
 
 This package is implementing the engine of the solar router which determines energy can be diverted to a local load or not.
 
-**engine_1switch** calls every second the power meter to get the actual power consumed. If energy sent to the grid is greater than the divertion start level (in W) during start tempo (in s), the relay is closed to use the energy locally. When the energy sent to the grid reach the level (in W) defined to stop the divertion during stop tempo (in s), the relay is openned and local consomption is stopped.
+**Engine 1 x switch** calls every second the power meter to get the actual power consumed. If energy sent to the grid is greater than the divertion start level (in W) during start tempo (in s), the relay is closed to use the energy locally. When the energy sent to the grid reach the level (in W) defined to stop the divertion during stop tempo (in s), the relay is openned and local consomption is stopped.
 
-engine_1switch's automatic regulation can be activated or deactivated with the activation switch.
+Engine 1 x switch's automatic regulation can be activated or deactivated with the activation switch.
 
 The following schema is representing the consumption with this engine activated:
 
-![engine_1switch](images/engine_1switch.png)
+![Engine 1 x switch](images/engine_1switch.png)
 
 **Legend:**
 
@@ -34,14 +34,16 @@ To use this package, add the following lines to your configuration file:
 
 ```yaml linenums="1"
 packages:
-  engine:
+  solar_router:
     url: https://github.com/XavierBerger/Solar-Router-for-ESPHome/
     files:
-      - name: solar_router/engine_1switch.yaml
+      - path: solar_router/engine_1switch.yaml
         vars:
-          green_led_pin: GPIO19
-          yellow_led_pin: GPIO18
+          green_led_pin: GPIO1
+          green_led_inverted: 'False'
+          yellow_led_pin: GPIO2
+          yellow_led_inverted: 'False'
 ```
 
-When this package is used it is required to define `green_led_pin` and `green_led_pin` in `vars` section as show in the upper example.
+When this package is used it is required to define `green_led_pin` and `yellow_led_pin` in `vars` section as show in the upper example. `xxx_led_inverted` can define is led is active on high or low signal and is optional.
 

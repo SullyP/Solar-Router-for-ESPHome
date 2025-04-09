@@ -17,19 +17,15 @@ Pour utiliser ce package, ajoutez les lignes suivantes à votre fichier de confi
 packages:
   temperature_limiter:
     url: https://github.com/XavierBerger/Solar-Router-for-ESPHome/
-    file: solar_router/temperature_limiter_DS18B20.yaml
+    files: 
+      - path: solar_router/temperature_limiter_DS18B20.yaml
+        vars:
+          DS18B20_pin: GPIO13
+          temperature_update_interval: 1s
+          red_led_inverted: "False"
+          red_led_pin: GPIO4
 ```
 
-Ce package doit connaître le GPIO utilisé par le capteur de température pour obtenir la température. Ce GPIO doit être défini par `DS18B20_pin` dans la section `substitutions` de votre configuration, comme dans l'exemple ci-dessous :
+Ce package doit connaître le GPIO utilisé par le capteur de température pour obtenir la température. Ce GPIO doit être défini par `DS18B20_pin` dans la section `vars` de votre configuration, comme dans l'exemple ci-dessus.
 
-```yaml linenums="1"
-substitutions:
-  # Sensor in home assistant gathering the temperature
-  DS18B20_pin: GPIO13
-  # Safety limit LED configuration
-  red_led_inverted: "False"
-  red_led_pin: GPIO4
-
-```
-
-Des paramètres optionnels supplémentaires peuvent être définis dans la section `substitutions`, tels que `DS18B20_address` (qui est optionnel) et `temperature_update_interval` (qui est défini par défaut à `5s`).
+Des paramètres optionnels supplémentaires peuvent être définis dans la section `vars`, tels que `DS18B20_address` (qui est optionnel) et `temperature_update_interval` (qui est défini par défaut à `5s`).

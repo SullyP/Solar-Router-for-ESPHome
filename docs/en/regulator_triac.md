@@ -33,7 +33,7 @@ packages:
   regulator:
     url: https://github.com/XavierBerger/Solar-Router-for-ESPHome/
     files:
-      - name: solar_router/regulator_triac.yaml
+      - path: solar_router/regulator_triac.yaml
         vars:
           regulator_gate_pin: GPIO22
           regulator_zero_crossing_pin: GPIO23

@@ -1,10 +1,10 @@
-# engine_1dimmer_1bypass
+# Engine 1 x dimmer + 1 x bypass
 
 This package implements the engine of the solar router which determines when and how much energy has to be diverted to the load, with a bypass function for maximum efficiency.
 
 When the regulator is intensively used for an extended period, the regulator will tends to overheat. This engine is designed to avoid this issue by activating a bypass relay and turning off the regulator when the regulator is opened at 100% for an extended period. To avoid flickering, the bypass relay is activated only when the regulator is opened at 100% for a number of consecutive regulation.
 
-**engine_1dimmer_1bypass** calls every second the power meter to get the actual energy exchanged with the grid. If energy produced is greater than energy consumed and exceeds the defined exchange target, the engine will determine the **percentage of regulator opening** and adjusts it dynamically to reach the target. When the regulator reaches 100% for an extended period, the bypass relay is activated for maximum efficiency.
+**Engine 1 x dimmer + 1 x bypass** calls every second the power meter to get the actual energy exchanged with the grid. If energy produced is greater than energy consumed and exceeds the defined exchange target, the engine will determine the **percentage of regulator opening** and adjusts it dynamically to reach the target. When the regulator reaches 100% for an extended period, the bypass relay is activated for maximum efficiency.
 
 Engine's automatic regulation can be activated or deactivated with the activation switch.
 
@@ -34,10 +34,17 @@ To use this package, add the following lines to your configuration file:
 
 ```yaml linenums="1"
 packages:
-  engine_regulator_1bypass:
+  solar_router:
     url: https://github.com/XavierBerger/Solar-Router-for-ESPHome/
-    file: solar_router/engine_regulator_1bypass.yaml
+    files:
+      - path: solar_router/engine_1dimmer_1bypass.yaml
+        vars:
+          green_led_pin: GPIO1
+          green_led_inverted: 'False'
+          yellow_led_pin: GPIO2
+          yellow_led_inverted: 'False'
 ```
+When this package is used it is required to define `green_led_pin` and `yellow_led_pin` in `vars` section as show in the upper example. `xxx_led_inverted` can define is led is active on high or low signal and is optional.
 
 !!! tip "Adjusting Bypass Tempo"
     The `Bypass Tempo` determines how many consecutive regulations at 100% are needed before activating the bypass relay. A lower value will make the bypass more reactive but might cause more frequent switching (flickering). Because there's roughly 1 regulation per second, `Bypass Tempo` can be approximated as the time in second with the regulator at 100% before which the the bypass relay is activated.

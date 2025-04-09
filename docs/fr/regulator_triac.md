@@ -33,15 +33,11 @@ Pour utiliser ce package, ajoutez les lignes suivantes à votre fichier de confi
 packages:
   regulator:
     url: https://github.com/XavierBerger/Solar-Router-for-ESPHome/
-    file: solar_router/regulator_triac.yaml
+    files:
+      - path: solar_router/regulator_triac.yaml
+        vars:
+          regulator_gate_pin: GPIO22
+          regulator_zero_crossing_pin: GPIO23
 ```
 
 Ce package nécessite la définition des broches connectées au module triac pour la détection du passage à zéro (`regulator_zero_crossing_pin`) et le contrôle de la gâchette/PWM (`regulator_gate_pin`)
-
-```yaml linenums="1"
-substitutions:
-  # Regulator configuration ------------------------------------------------------
-  # Define GPIO pin connected to AC Dimmer for gate and zero crossing detection.
-  regulator_gate_pin: GPIO22
-  regulator_zero_crossing_pin: GPIO23
-```

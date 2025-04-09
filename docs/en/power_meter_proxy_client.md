@@ -9,7 +9,7 @@ packages:
   power_meter:
     url: https://github.com/XavierBerger/Solar-Router-for-ESPHome/
     files:
-      - name: solar_router/power_meter_proxy.yaml
+      - path: solar_router/power_meter_proxy.yaml
         vars:
           power_meter_ip_address: "192.168.1.30"
 ```

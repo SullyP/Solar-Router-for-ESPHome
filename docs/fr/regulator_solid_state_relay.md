@@ -31,14 +31,10 @@ Pour utiliser ce package, ajoutez les lignes suivantes à votre fichier de confi
 packages:
   regulator:
     url: https://github.com/XavierBerger/Solar-Router-for-ESPHome/
-    file: solar_router/regulator_solid_state_relay.yaml
+    files:
+      - path: solar_router/regulator_solid_state_relay.yaml
+        vars:
+          regulator_gate_pin: GPIO22
 ```
 
 Ce package nécessite la définition de la broche connectée à la gâchette du relais : `regulator_gate_pin`
-
-```yaml linenums="1"
-substitutions:
-  # Regulator configuration ------------------------------------------------------
-  # Define GPIO pin connected to the relay gate.
-  regulator_gate_pin: GPIO22
-```
