@@ -1,7 +1,7 @@
 <<: !include power_meter_common.yaml
 
 esphome:
-  min_version: 2024.11.1
+  min_version: 2025.5.0
 
 # ----------------------------------------------------------------------------------------------------
 # Use http request component
@@ -31,7 +31,7 @@ script:
           then:
             - http_request.get:
                 url: http://${power_meter_ip_address}/solar_api/v1/GetMeterRealtimeData.cgi
-                headers:
+                request_headers:
                   Content-Type: application/json
                 capture_response: true
                 max_response_buffer_size: 4096
@@ -63,7 +63,7 @@ script:
                         id(real_power).publish_state(NAN);
             - http_request.get:
                 url: http://${power_meter_ip_address}/solar_api/v1/GetPowerFlowRealtimeData.fcgi
-                headers:
+                request_headers:
                   Content-Type: application/json
                 capture_response: true
                 max_response_buffer_size: 4096
