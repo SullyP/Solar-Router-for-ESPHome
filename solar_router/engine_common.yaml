@@ -74,6 +74,7 @@ output:
 
 light:
   - id: yellow_led
+    name: "Yellow Led"
     platform: binary
     output: yellow_led_output
     internal: ${hide_leds}
@@ -98,6 +99,7 @@ light:
               duration: 50ms
 
   - id: green_led
+    name: "Green Led"
     platform: binary
     output: green_led_output
     internal: ${hide_leds}
