@@ -15,6 +15,8 @@ substitutions:
   yellow_led_inverted: "False"
   # By default regulators are hidden
   hide_regulators: "True"
+  # By default leds are hidden
+  hide_leds: "True"
 
 # Component managing time.
 # If activate switch is ON, power measurment and energy regulation are performed every secondes
@@ -74,7 +76,7 @@ light:
   - id: yellow_led
     platform: binary
     output: yellow_led_output
-    internal: True
+    internal: ${hide_leds}
     effects:
       - strobe:
           name: blink
@@ -98,7 +100,7 @@ light:
   - id: green_led
     platform: binary
     output: green_led_output
-    internal: True
+    internal: ${hide_leds}
     effects:
       - strobe:
           name: blink

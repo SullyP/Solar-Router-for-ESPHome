@@ -44,9 +44,13 @@ packages:
           green_led_inverted: 'False'
           yellow_led_pin: GPIO2
           yellow_led_inverted: 'False'
-          hide_regulators: 'False'
+          hide_regulators: 'True'
+          hide_leds: 'True'
 ```
-Il est necessaire de définir `green_led_pin` et `yellow_led_pin` dans la section `vars` comme montré dans l'exemple ci-dessus. Le paramètre `xxx_led_inverted` permet de définir si la LED est active sur niveau haut ou bas. Ce paramètre est optionnel. Le paramètre `hide_regulators` permet de définir si le capteur de régulateur est affiché dans HA. Ce paramètre est optionnel.
+Il est necessaire de définir `green_led_pin` et `yellow_led_pin` dans la section `vars` comme montré dans l'exemple ci-dessus.
+ * Le paramètre `xxx_led_inverted` permet de définir si la LED est active sur niveau haut ou bas. Ce paramètre est optionnel.
+ * Le paramètre `hide_regulators` permet de définir si le capteur de régulateur est affiché dans HA. Ce paramètre est optionnel.
+ * Le paramètre `hide_leds` permet de définir si les valeurs des leds sont affichées dans HA. Ce paramètre est optionnel.
 
 !!! tip "Ajustement du Bypass tempo"
     Le `Bypass tempo` détermine combien de régulations consécutives à 100% sont nécessaires avant d'activer le relais de bypass. Une valeur plus basse rendra le bypass plus réactif mais pourrait causer des commutations plus fréquentes (scintillement). Comme il y a environ 1 régulation par seconde, `Bypass tempo` peut être approximé comme le temps en secondes avec le régulateur à 100% avant que le relais de bypass ne soit activé.

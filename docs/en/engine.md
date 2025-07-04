@@ -26,8 +26,10 @@ The green LED is reflecting the actual configuration of regulation:
 
 LEDs configuraton are done in engine configuration.
 
-### Hide or show regulators sensors
+### Hide or show sensors
 
 An optionnal `hide_regulators` variable allow to change regulators sensors visibility in HA (hidden by default).
+
+An optionnal `hide_leds` variable allow to change leds values visibility in HA (hidden by default).
 
 This configuraton is done in engine configuration.
