@@ -25,3 +25,9 @@ The green LED is reflecting the actual configuration of regulation:
 - ***blink*** : solar router is currently sending energy to the load.
 
 LEDs configuraton are done in engine configuration.
+
+### Hide or show regulators sensors
+
+An optionnal `hide_regulators` variable allow to change regulators sensors visibility in HA (hidden by default).
+
+This configuraton is done in engine configuration.

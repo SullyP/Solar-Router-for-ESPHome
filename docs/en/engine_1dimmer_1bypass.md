@@ -43,8 +43,9 @@ packages:
           green_led_inverted: 'False'
           yellow_led_pin: GPIO2
           yellow_led_inverted: 'False'
+          hide_regulators: 'False'
 ```
-When this package is used it is required to define `green_led_pin` and `yellow_led_pin` in `vars` section as show in the upper example. `xxx_led_inverted` can define is led is active on high or low signal and is optional.
+When this package is used it is required to define `green_led_pin` and `yellow_led_pin` in `vars` section as show in the upper example. `xxx_led_inverted` can define is led is active on high or low signal and is optional. `hide_regulators` allow to hide or show regulators sensors from HA and is optionnal.
 
 !!! tip "Adjusting Bypass Tempo"
     The `Bypass Tempo` determines how many consecutive regulations at 100% are needed before activating the bypass relay. A lower value will make the bypass more reactive but might cause more frequent switching (flickering). Because there's roughly 1 regulation per second, `Bypass Tempo` can be approximated as the time in second with the regulator at 100% before which the the bypass relay is activated.

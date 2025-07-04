@@ -26,3 +26,9 @@ La LED verte reflète la configuration actuelle de la régulation :
 - ***CLIGNOTANTE*** : le routeur solaire envoie actuellement de l'énergie à la charge.
 
 La configuration des LED est effectuée dans la configuration de l'`engine`.
+
+### Afficher ou masquer les capteurs de régulateurs
+
+Une variable optionnelle `hide_regulators` permet de changer la visibilité des capteurs de régulateurs dans HA (cachés par défaut).
+
+Cette configuration est effectuée dans la configuration de l'`engine`.
