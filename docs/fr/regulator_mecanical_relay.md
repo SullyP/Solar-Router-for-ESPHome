@@ -23,7 +23,7 @@ packages:
     files:
       - path: solar_router/regulator_mecanical_relay.yaml
         vars:
-          regulator_gate_pin: GPIO22
+          relay_regulator_gate_pin: GPIO22
 ```
 
 Ce package nécessite la définition de la broche connectée à la porte du relais : `relay_regulator_gate_pin`
