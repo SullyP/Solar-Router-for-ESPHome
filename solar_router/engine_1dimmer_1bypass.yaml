@@ -35,7 +35,7 @@ switch:
     name: "Energy divertion"
     id: energy_divertion
     optimistic: True
-    internal: true
+    internal: ${hide_regulators}
 
 binary_sensor:
   - platform: template
@@ -51,12 +51,14 @@ sensor:
     name: "Bypass tempo"
     unit_of_measurement: "s"
     update_interval: 1s
+    internal: ${hide_regulators}
 
   - platform: template
     name: "Regulator Opening"
     id: regulator_opening
     unit_of_measurement: "%"
     update_interval: 1s
+    internal: ${hide_regulators}
 
 number:
   # Router level from 0 to 100

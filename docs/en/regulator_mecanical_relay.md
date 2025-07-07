@@ -23,7 +23,7 @@ packages:
     files:
       - path: solar_router/regulator_mecanical_relay.yaml
         vars:
-          regulator_gate_pin: GPIO22
+          relay_regulator_gate_pin: GPIO22
 ```
 
-This package require the definition of pin connected to the gate of the relay. Set `regulator_gate_pin` into `vars` according to your hardware
+This package require the definition of pin connected to the gate of the relay. Set `relay_regulator_gate_pin` into `vars` according to your hardware
