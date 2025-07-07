@@ -77,8 +77,19 @@ number:
 
   # Define the reactivity of router level
   - platform: template
-    name: "Reactivity"
-    id: reactivity
+    name: "Up Reactivity" 
+    id: up_reactivity
+    optimistic: True
+    restore_value: True
+    mode: box
+    min_value: 1
+    max_value: 100
+    initial_value: 10
+    unit_of_measurement: ""
+    step: 1
+  - platform: template
+    name: "Down Reactivity"
+    id: down_reactivity
     optimistic: True
     restore_value: True
     mode: box
@@ -124,7 +135,19 @@ script:
             id(router_level).publish_state(0);
             return;
           }
-          double delta = -1*(id(real_power).state-id(target_grid_exchange).state)*id(reactivity).state/1000;
+
+          // Calculate the power difference and adjust the regulator opening percentage
+          double real_power_state = id(real_power).state;
+          double target_grid_exchange_state = id(target_grid_exchange).state;
+          double reactivity_state = NAN;
+          if (real_power_state >= target_grid_exchange_state) {
+              reactivity_state = id(down_reactivity).state;
+          } else {
+              reactivity_state = id(up_reactivity).state;
+          }
+
+          double delta = -1*(id(real_power).state-id(target_grid_exchange).state)*reactivity_state.state/1000;
+          // Determine the new regulator status
           double new_router_level = id(router_level).state + delta;
           new_router_level = std::max(0.0, std::min(100.0, new_router_level));
           id(router_level).publish_state(new_router_level);
