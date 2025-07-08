@@ -1,0 +1,81 @@
+substitutions:
+  scheduler_unique_id: "Default"
+
+switch:
+  # Define is scheduler is active or not
+  - platform: template
+    name: "Activate ${scheduler_unique_id} Scheduler"
+    optimistic: true
+    initial_value: "True"
+    id: "${scheduler_unique_id}_scheduler_activate"
+    on_turn_off:
+      then:
+        # Set router level to 0 then Enable router
+        - number.set:
+            id: router_level
+            value: 0
+        - switch.turn_on: activate
+
+number:
+  # Scheduler Router level from 0 to 100
+  # When solar routing is disabled at scheduled time: Acts as a manual control to set the router level
+  - platform: template
+    name: "${scheduler_unique_id} Scheduler Router Level"
+    id: "${scheduler_unique_id}_scheduler_router_level"
+    min_value: 0
+    max_value: 100
+    initial_value: 100
+    step: 1
+    unit_of_measurement: "%"
+    optimistic: True
+    mode: slider
+
+text:
+  - platform: template
+    name: "${scheduler_unique_id} Scheduler Begin Hour Minute"
+    id: "${scheduler_unique_id}_scheduler_begin_hour_min"
+    optimistic: True
+    min_length: 5
+    max_length: 5
+    mode: text
+    initial_value: "00:00"
+  - platform: template
+    name: "${scheduler_unique_id} Scheduler End Hour Minute"
+    id: "${scheduler_unique_id}_scheduler_end_hour_min"
+    optimistic: True
+    min_length: 5
+    max_length: 5
+    mode: text
+    initial_value: "02:00"
+
+time:
+  - platform: sntp
+    id: ${scheduler_unique_id}_sntp
+    on_time:
+      
+      - seconds: 0
+        minutes: /5
+        then:
+        - if:
+            condition:
+              - switch.is_on: activate
+            then:
+              - if:
+                  condition:
+                    lambda: return id(${scheduler_unique_id}_scheduler_begin_hour_min).state == id(${scheduler_unique_id}_sntp).now().strftime("%H:%M");
+                  then:
+                    # Disable Router then set router level to X percent
+                    - switch.turn_off: activate
+                    - number.set:
+                        id: router_level
+                        value: !lambda return id(${scheduler_unique_id}_scheduler_router_level).state;
+                  else:
+                    - if:
+                        condition:
+                          lambda: return id(${scheduler_unique_id}_scheduler_end_hour_min).state == id(${scheduler_unique_id}_sntp).now().strftime("%H:%M");
+                        then:
+                          # Set router level to 0 then Enable router
+                          - number.set:
+                              id: router_level
+                              value: 0
+                          - switch.turn_on: activate
