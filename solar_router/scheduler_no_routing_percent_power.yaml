@@ -6,7 +6,7 @@ switch:
   - platform: template
     name: "Activate ${scheduler_unique_id} Scheduler"
     optimistic: true
-    initial_value: "True"
+    restore_mode: RESTORE_DEFAULT_ON
     id: "${scheduler_unique_id}_scheduler_activate"
     on_turn_off:
       then:
