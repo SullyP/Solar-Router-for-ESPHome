@@ -58,7 +58,6 @@ switch:
             id(energy_divertion1).turn_off();
             id(energy_divertion2).turn_off();
             id(regulator_opening).publish_state(0);
-        - script.execute: energy_regulation
 
   - platform: template
     name: "Energy divertion Relay 1"
@@ -166,9 +165,13 @@ number:
     restore_value: True
     on_value:
       then:
-        - lambda: |-
-            id(relay1_tempo_counter).publish_state(id(full_power_duration).state);
-            id(relay2_tempo_counter).publish_state(id(full_power_duration).state);
+        - if:
+            condition:
+              - switch.is_on: activate
+            then:
+              - lambda: |-
+                  id(relay1_tempo_counter).publish_state(id(full_power_duration).state);
+                  id(relay2_tempo_counter).publish_state(id(full_power_duration).state);
 
   # Define the reactivity of router level
   - platform: template
