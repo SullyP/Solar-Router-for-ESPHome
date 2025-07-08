@@ -20,7 +20,7 @@ packages:
           red_led_pin: GPIO4
 ```
 
-This package needs to know the GPIO used by the temperature to get the temperature. This GPIO has to be defined by `DS18B20_pin` into `vars` section of your configuration as in example ballow:
+This package needs to know which sensor to use to obtain the temperature to be monitored. This sensor must be defined as `temperature_sensor` into `vars` section of your configuration, as in the example above.
 
 Additionnal optional parameters can be set into `vars` section such as `red_led_inverted` defining if the LED is active on high or low level of pin (which is set default set to `False`).
 
