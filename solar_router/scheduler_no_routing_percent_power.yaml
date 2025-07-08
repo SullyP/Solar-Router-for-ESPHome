@@ -31,6 +31,7 @@ number:
     mode: slider
 
 text:
+  # Begin HH:MM of the scheduler (MM need to be a multiple of 5 minutes)
   - platform: template
     name: "${scheduler_unique_id} Scheduler Begin Hour Minute"
     id: "${scheduler_unique_id}_scheduler_begin_hour_min"
@@ -39,6 +40,7 @@ text:
     max_length: 5
     mode: text
     initial_value: "00:00"
+  # End HH:MM of the scheduler (MM need to be a multiple of 5 minutes)
   - platform: template
     name: "${scheduler_unique_id} Scheduler End Hour Minute"
     id: "${scheduler_unique_id}_scheduler_end_hour_min"
@@ -60,6 +62,7 @@ time:
             condition:
               - switch.is_on: activate
             then:
+              # If Now is equal to Begin HH:MM of the scheduler
               - if:
                   condition:
                     lambda: return id(${scheduler_unique_id}_scheduler_begin_hour_min).state == id(${scheduler_unique_id}_sntp).now().strftime("%H:%M");
@@ -70,6 +73,7 @@ time:
                         id: router_level
                         value: !lambda return id(${scheduler_unique_id}_scheduler_router_level).state;
                   else:
+                    # If Now is equal to End HH:MM of the scheduler
                     - if:
                         condition:
                           lambda: return id(${scheduler_unique_id}_scheduler_end_hour_min).state == id(${scheduler_unique_id}_sntp).now().strftime("%H:%M");
