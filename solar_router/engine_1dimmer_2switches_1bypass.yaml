@@ -31,12 +31,8 @@ sensor:
   - platform: template
     name: "Regulator Opening"
     id: regulator_opening
-    min_value: 0
-    max_value: 100
-    step: 1
     unit_of_measurement: "%"
-    optimistic: True
-    mode: slider
+    update_interval: 1s
     internal: ${hide_regulators}
     on_value:
       then:
@@ -285,7 +281,7 @@ script:
           if (real_power_state >= target_grid_exchange_state) {
               reactivity_state = id(down_reactivity).state;
           } else {
-              reactivity_state = id(reactivity).state;
+              reactivity_state = id(up_reactivity).state;
           }
     
           double delta = -1*(real_power_state-target_grid_exchange_state)*reactivity_state/3000;
