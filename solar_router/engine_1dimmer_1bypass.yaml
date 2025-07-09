@@ -190,8 +190,7 @@ script:
                 reactivity_state = id(up_reactivity).state;
             }
 
-            double delta = 0;
-            delta = -1*(id(real_power).state-id(target_grid_exchange).state)*reactivity_state/1000;
+            double delta = -1*(real_power_state-target_grid_exchange_state)*reactivity_state/1000;
           
             // Determine the new regulator status
             double new_router_level = id(router_level).state + delta;
