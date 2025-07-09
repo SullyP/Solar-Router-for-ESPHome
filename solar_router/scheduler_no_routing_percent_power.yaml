@@ -1,6 +1,11 @@
 substitutions:
   scheduler_unique_id: "Forced"
-  custom_script: ""
+  custom_script: ${scheduler_unique_id}_fake_script
+
+script:
+  # A fake empty script to run if user don't provide a custom one
+  - id: ${scheduler_unique_id}_fake_script
+    then:
 
 switch:
   # Define is scheduler is active or not
@@ -109,16 +114,12 @@ time:
                         id: router_level
                         value: !lambda return id(${scheduler_unique_id}_scheduler_router_level).state;
                     # if deactivation script option
-                    - if:
-                        condition:
-                          lambda: return ${custom_script} != '';
-                        then:
-                          - script.execute: ${custom_script}
+                    - script.execute: ${custom_script}
                   else:
                     - if:
                         condition:
                           and:
-                            - switch.is_on: activate
+                            - switch.is_off: activate
                             # End Hour and minutes are reached
                             - lambda: |-
                                 // End Hour and minutes are reached
