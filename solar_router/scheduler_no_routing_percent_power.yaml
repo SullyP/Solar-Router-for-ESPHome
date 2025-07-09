@@ -1,5 +1,6 @@
 substitutions:
-  scheduler_unique_id: "Default"
+  scheduler_unique_id: "Forced"
+  custom_script: ""
 
 switch:
   # Define is scheduler is active or not
@@ -10,11 +11,15 @@ switch:
     id: "${scheduler_unique_id}_scheduler_activate"
     on_turn_off:
       then:
-        # Set router level to 0 then Enable router
-        - number.set:
-            id: router_level
-            value: 0
-        - switch.turn_on: activate
+        - if:
+            condition:
+              - switch.is_off: activate
+            then:
+              # Set router level to 0 then Enable router
+              - number.set:
+                  id: router_level
+                  value: 0
+              - switch.turn_on: activate
 
 number:
   # Scheduler Router level from 0 to 100
@@ -29,26 +34,48 @@ number:
     unit_of_measurement: "%"
     optimistic: True
     mode: slider
-
-text:
-  # Begin HH:MM of the scheduler (MM need to be a multiple of 5 minutes)
   - platform: template
-    name: "${scheduler_unique_id} Scheduler Begin Hour Minute"
-    id: "${scheduler_unique_id}_scheduler_begin_hour_min"
+    name: "${scheduler_unique_id} Scheduler Checking End Threshold"
+    id: "${scheduler_unique_id}_scheduler_checking_end_threshold"
     optimistic: True
-    min_length: 5
-    max_length: 5
-    mode: text
-    initial_value: "00:00"
-  # End HH:MM of the scheduler (MM need to be a multiple of 5 minutes)
+    min_value: 0
+    max_value: 720 #12 hours max
+    step: 5
+    mode: box
   - platform: template
-    name: "${scheduler_unique_id} Scheduler End Hour Minute"
-    id: "${scheduler_unique_id}_scheduler_end_hour_min"
+    name: "${scheduler_unique_id} Scheduler Begin Minute"
+    id: "${scheduler_unique_id}_scheduler_begin_min"
     optimistic: True
-    min_length: 5
-    max_length: 5
-    mode: text
-    initial_value: "02:00"
+    min_value: 0
+    max_value: 55
+    step: 5
+    mode: box
+  - platform: template
+    name: "${scheduler_unique_id} Scheduler End Minute"
+    id: "${scheduler_unique_id}_scheduler_end_min"
+    optimistic: True
+    min_value: 0
+    max_value: 55
+    step: 5
+    mode: box
+  - platform: template
+    name: "${scheduler_unique_id} Scheduler Begin Hour"
+    id: "${scheduler_unique_id}_scheduler_begin_hour"
+    optimistic: True
+    min_value: 0
+    max_value: 23
+    step: 1
+    mode: box
+    initial_value: 0
+  - platform: template
+    name: "${scheduler_unique_id} Scheduler End Hour"
+    id: "${scheduler_unique_id}_scheduler_end_hour"
+    optimistic: True
+    min_value: 0
+    max_value: 23
+    step: 1
+    mode: box
+    initial_value: 2
 
 time:
   - platform: sntp
@@ -60,23 +87,56 @@ time:
         then:
         - if:
             condition:
-              - switch.is_on: activate
+              - switch.is_on: ${scheduler_unique_id}_scheduler_activate
             then:
-              # If Now is equal to Begin HH:MM of the scheduler
               - if:
                   condition:
-                    lambda: return id(${scheduler_unique_id}_scheduler_begin_hour_min).state == id(${scheduler_unique_id}_sntp).now().strftime("%H:%M");
+                    lambda: |-
+                      // We are between begin (included) and end (excluded) hour and minutes
+                      int beginTotalMinutes = id(${scheduler_unique_id}_scheduler_begin_hour).state * 60 + id(${scheduler_unique_id}_scheduler_begin_min).state;
+                      int endTotalMinutes = id(${scheduler_unique_id}_scheduler_end_hour).state * 60 + id(${scheduler_unique_id}_scheduler_end_min).state;
+                      int checkTotalMinutes = id(${scheduler_unique_id}_sntp).now().hour * 60 + id(${scheduler_unique_id}_sntp).now().minute;
+
+                      if (beginTotalMinutes <= endTotalMinutes) {
+                          return checkTotalMinutes >= beginTotalMinutes && checkTotalMinutes < endTotalMinutes;
+                      } else {
+                          return checkTotalMinutes >= beginTotalMinutes || checkTotalMinutes < endTotalMinutes;
+                      }
                   then:
                     # Disable Router then set router level to X percent
                     - switch.turn_off: activate
                     - number.set:
                         id: router_level
                         value: !lambda return id(${scheduler_unique_id}_scheduler_router_level).state;
-                  else:
-                    # If Now is equal to End HH:MM of the scheduler
+                    # if deactivation script option
                     - if:
                         condition:
-                          lambda: return id(${scheduler_unique_id}_scheduler_end_hour_min).state == id(${scheduler_unique_id}_sntp).now().strftime("%H:%M");
+                          lambda: return ${custom_script} != '';
+                        then:
+                          - script.execute: ${custom_script}
+                  else:
+                    - if:
+                        condition:
+                          and:
+                            - switch.is_on: activate
+                            # End Hour and minutes are reached
+                            - lambda: |-
+                                // End Hour and minutes are reached
+                                if (id(${scheduler_unique_id}_scheduler_end_hour).state == id(${scheduler_unique_id}_sntp).now().hour && id(${scheduler_unique_id}_scheduler_end_min).state == id(${scheduler_unique_id}_sntp).now().minute){
+                                  return true;
+                                }
+                                
+                                // Or we are between end hour and minutes and scheduler_checking_end_threshold
+                                // It's a failsafe to check that router have been activated even if we lost the moment of end hour and minutes
+                                int beginTotalMinutes = id(${scheduler_unique_id}_scheduler_end_hour).state * 60 + id(${scheduler_unique_id}_scheduler_end_min).state;
+                                int endTotalMinutes = beginTotalMinutes + id(${scheduler_unique_id}_scheduler_checking_end_threshold).state;
+                                int checkTotalMinutes = id(${scheduler_unique_id}_sntp).now().hour * 60 + id(${scheduler_unique_id}_sntp).now().minute;
+
+                                if (beginTotalMinutes <= endTotalMinutes) {
+                                    return checkTotalMinutes >= beginTotalMinutes && checkTotalMinutes <= endTotalMinutes;
+                                } else {
+                                    return checkTotalMinutes >= beginTotalMinutes || checkTotalMinutes <= endTotalMinutes;
+                                }
                         then:
                           # Set router level to 0 then Enable router
                           - number.set:
