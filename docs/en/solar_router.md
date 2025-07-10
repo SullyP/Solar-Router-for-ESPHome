@@ -10,8 +10,11 @@
     
     * ***Activate Solar Routing***  
       Control if Solar routing should be activated or not
-    * ***Reactivity***  
-      How fast will be the solar routing
+    * ***Down Reactivity***  
+      How fast will be the solar routing when real_power is more than target_grid_exchange.
+      From 1 to 100. 1 is the slowest, 100 is the fastest.
+    * ***Up Reactivity***  
+      How fast will be the solar routing when real_power is less than target_grid_exchange.
       From 1 to 100. 1 is the slowest, 100 is the fastest.
     * ***Router Level***  
       What is the current percentage of energy sent to the load by the overall router
