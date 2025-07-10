@@ -21,7 +21,7 @@ To contribute to **Solar Router for ESPHome** and develop a new feature on your 
 - [Create and activate a Python virtual environment](https://docs.python.org/3/library/venv.html) 
     ```shell
     python -m venv venv
-    venv/bin/activate
+    source venv/bin/activate
     ```
 - Install ESPHome CLI and other requirements:
     ```shell
