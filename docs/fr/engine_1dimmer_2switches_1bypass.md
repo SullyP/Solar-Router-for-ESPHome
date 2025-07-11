@@ -1,45 +1,45 @@
 # Engine 1 x dimmer + 2 x switches + 1 x bypass
 
-Ce paquet met en œuvre le moteur du routeur solaire qui détermine quand et combien d'énergie doit être détournée vers trois charges utilisant trois canaux, ou une seule charge avec trois canaux comme un chauffe-eau avec trois résistances de chauffage, le troisième canal ayant une fonctionnalité de bypass pour une efficacité maximale.
+Ce package implÃ©mente le moteur du routeur solaire qui dÃ©termine quand et quelle quantitÃ© d'Ã©nergie doit Ãªtre dÃ©viÃ©e vers trois charges utilisant trois canaux, ou une seule charge avec trois canaux comme un chauffe-eau avec trois rÃ©sistances de chauffage, le troisiÃ¨me canal ayant une fonctionnalitÃ© de bypass pour une efficacitÃ© maximale.
 
-Le moteur utilise trois relais pour contrôler les différentes charges, le troisième relais étant doté d'un régulateur supplémentaire pour un contrôle fin de la puissance. Les charges sont activées de manière séquentielle au fur et à mesure que la puissance devient disponible :
+Le moteur utilise trois relais pour contrÃ´ler les diffÃ©rentes charges, le troisiÃ¨me relais Ã©tant dotÃ© d'un rÃ©gulateur supplÃ©mentaire pour un contrÃ´le fin de la puissance. Les charges sont activÃ©es de maniÃ¨re sÃ©quentielle au fur et Ã  mesure que la puissance devient disponible :
 1. 1er canal : Relay 1 (On/Off)
-2. 2ème canal: Relay 2 (On/Off)
-3. 3ème canal: Relay 3 ET régulateur TRIAC ou SSR (Contrôl variable)
+2. 2Ã¨me canal: Relay 2 (On/Off)
+3. 3Ã¨me canal: Relay 3 ET un gradateur TRIAC ou SSR (ContrÃ´l variable)
 
-Lorsque les besoins en énergie augmentent :
+Lorsque les besoins en Ã©nergie augmentent :
 
-- Tout d'abord, le régulateur du canal 3 augmente progressivement la puissance.
-- Lorsque le régulateur atteint 33,33 %, le relais 1 s'active
-- Lorsque le régulateur atteint 66,66 %, le relais 2 s'active
-- Lorsque le régulateur atteint 100 %, le relais 3 s'active et contourne le régulateur.
+- Tout d'abord, le rÃ©gulateur du canal 3 augmente progressivement la puissance.
+- Lorsque le rÃ©gulateur atteint 33,33 %, le relais 1 s'active
+- Lorsque le rÃ©gulateur atteint 66,66 %, le relais 2 s'active
+- Lorsque le rÃ©gulateur atteint 100 %, le relais 3 s'active et contourne le rÃ©gulateur.
 
-**Le moteur 1 x variateur + 2 x interrupteurs + 1 x bypass** appelle toutes les secondes le compteur électrique pour obtenir l'énergie réelle échangée avec le réseau. Si l'énergie produite est supérieure à l'énergie consommée et dépasse l'objectif d'échange défini, le moteur déterminera la combinaison appropriée de relais et d'ouverture du régulateur pour atteindre l'objectif.
+**Le moteur 1 x variateur + 2 x interrupteurs + 1 x bypass** appelle toutes les secondes le compteur Ã©lectrique pour obtenir l'Ã©nergie rÃ©elle Ã©changÃ©e avec le rÃ©seau. Si l'Ã©nergie produite est supÃ©rieure Ã  l'Ã©nergie consommÃ©e et dÃ©passe l'objectif d'Ã©change dÃ©fini, le moteur dÃ©terminera la combinaison appropriÃ©e de relais et d'ouverture du rÃ©gulateur pour atteindre l'objectif.
 
-La régulation automatique du moteur peut être activée ou désactivée à l'aide de du switch d'activation.
+La rÃ©gulation automatique du moteur peut Ãªtre activÃ©e ou dÃ©sactivÃ©e Ã  l'aide de du switch d'activation.
 
-## Comment câbler les relais (canaux 1 et 2)
+## Comment cÃ¢bler les relais (canaux 1 et 2)
 
 - Ligne sur le relais Commun (COM)
-- Normalement ouvert (NO) du relais de la charge d'entrée directement à la charge
+- Normalement ouvert (NO) du relais de la charge d'entrÃ©e directement Ã  la charge
 
-## Comment câbler le relais de bypass (Canal 3)
+## Comment cÃ¢bler le relais de bypass (Canal 3)
 
-- Phase sur le Commun (COM) du relais de bypass et sur le relais vers l'entrée Phase du régulateur
-- Normalement Fermé (NC) flottant
-- Normalement Ouvert (NO) du relais vers la sortie Charge du régulateur (ou directement vers la charge)
+- Phase sur le Commun (COM) du relais de bypass et sur le relais vers l'entrÃ©e Phase du rÃ©gulateur
+- Normalement FermÃ© (NC) flottant
+- Normalement Ouvert (NO) du relais vers la sortie Charge du rÃ©gulateur (ou directement vers la charge)
 
-!!! Danger "Suivez les instructions de câblage"
-    Ne branchez pas l'entrée Phase du régulateur au Normalement Fermé (NC) du relais ! Votre charge serait mise hors tension lors de la commutation du relais, créant potentiellement des arcs à l'intérieur du relais.
+!!! Danger "Suivez les instructions de cÃ¢blage"
+    Ne branchez pas l'entrÃ©e Phase du rÃ©gulateur au Normalement FermÃ© (NC) du relais ! Votre charge serait mise hors tension lors de la commutation du relais, crÃ©ant potentiellement des arcs Ã  l'intÃ©rieur du relais.
     Plus d'informations dans cette [discussion](https://github.com/XavierBerger/Solar-Router-for-ESPHome/pull/51#issuecomment-2625724543).
 
-## Wiring schema example
+## Schema d'exemple de cablage
 
 ![Wiring schema example for water heater](images/3ResistorsWaterHeaterExampleWithBypass.svg)
 
 ## Configuration
 
-Pour utiliser ce package, ajoutez les lignes suivantes à votre fichier de configuration :
+Pour utiliser ce package, ajoutez les lignes suivantes Ã  votre fichier de configuration :
 
 ```yaml linenums="1"
 packages:
@@ -55,16 +55,16 @@ packages:
           hide_regulators: 'True'
           hide_leds: 'True'
 ```
-Il est necessaire de définir `green_led_pin` et `yellow_led_pin` dans la section `vars` comme montré dans l'exemple ci-dessus.
+Il est necessaire de dÃ©finir `green_led_pin` et `yellow_led_pin` dans la section `vars` comme montrÃ© dans l'exemple ci-dessus.
  
- * * Le paramètre `xxx_led_inverted` permet de définir si la LED est active sur niveau haut ou bas. Ce paramètre est optionnel.
- * Le paramètre `hide_regulators` permet de définir si le capteur de régulateur est affiché dans HA. Ce paramètre est optionnel.
- * Le paramètre `hide_leds` permet de définir si les valeurs des leds sont affichées dans HA. Ce paramètre est optionnel.
+ * * Le paramÃ¨tre `xxx_led_inverted` permet de dÃ©finir si la LED est active sur niveau haut ou bas. Ce paramÃ¨tre est optionnel.
+ * Le paramÃ¨tre `hide_regulators` permet de dÃ©finir si le capteur de rÃ©gulateur est affichÃ© dans HA. Ce paramÃ¨tre est optionnel.
+ * Le paramÃ¨tre `hide_leds` permet de dÃ©finir si les valeurs des leds sont affichÃ©es dans HA. Ce paramÃ¨tre est optionnel.
 
 !!! tip "Ajustement du Bypass tempo"
-    Le `Bypass tempo` détermine combien de régulations consécutives à 33.33%, 66.66% ou 100% sont nécessaires avant d'activer le relais de bypass. Une valeur plus basse rendra le bypass plus réactif mais pourrait causer des commutations plus fréquentes (scintillement). Comme il y a environ 1 régulation par seconde, `Bypass tempo` peut être approximé comme le temps en secondes avec le régulateur à 33.33% ou 66.66%  ou 100% avant que le relais de bypass ne soit activé.
+    Le `Bypass tempo` dÃ©termine combien de rÃ©gulations consÃ©cutives Ã  33.33%, 66.66% ou 100% sont nÃ©cessaires avant d'activer le relais de bypass. Une valeur plus basse rendra le bypass plus rÃ©actif mais pourrait causer des commutations plus frÃ©quentes (scintillement). Comme il y a environ 1 rÃ©gulation par seconde, `Bypass tempo` peut Ãªtre approximÃ© comme le temps en secondes avec le rÃ©gulateur Ã  33.33% ou 66.66%  ou 100% avant que le relais de bypass ne soit activÃ©.
 
-Ce paquet nécessite l'utilisation du package Relais régulateur ET d'un package régulateur (TRIAC ou SSR). N'oubliez pas de les inclure également.
+Ce paquet nÃ©cessite l'utilisation du package Relais rÃ©gulateur ET d'un package rÃ©gulateur (TRIAC ou SSR). N'oubliez pas de les inclure Ã©galement.
 
 Vous trouverez ci-dessous l'exemple de configuration pour les relais :
 
@@ -94,4 +94,4 @@ packages:
 ```
 
 !!! note "Relay Ids"
-    Les identifiants uniques des relais ne peuvent pas être modifiés pour utiliser ce moteur, en particulier l'identifiant unique `relay_unique_id : « 3 »` est toujours utilisé pour le relais de bypass.
+    Les identifiants uniques des relais ne peuvent pas Ãªtre modifiÃ©s pour utiliser ce moteur, en particulier l'identifiant unique `relay_unique_id : Â« 3 Â»` est toujours utilisÃ© pour le relais de bypass.
