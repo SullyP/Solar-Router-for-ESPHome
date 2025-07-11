@@ -10,8 +10,11 @@
     
     * ***Activer le routage solaire***  
       Contrôle si le routage solaire doit être activé ou non
-    * ***Réactivité***  
-      Vitesse du routage solaire.  
+    * ***Down Reactivity (Réactivité descendante)***  
+      Vitesse du routage solaire utilisée lorsque la puissance réelle est supérieure à l'échange réseau cible.
+      De 1 à 100. 1 est le plus lent, 100 est le plus rapide.
+    * ***Up Reactivity (Réactivité ascendante)***  
+      Vitesse du routage solaire utilisée lorsque la puissance réelle est inférieure à l'échange réseau cible.
       De 1 à 100. 1 est le plus lent, 100 est le plus rapide.
     * ***Ouverture du régulateur***  
       Pourcentage actuel d'ouverture de la porte pour envoyer de l'énergie à la charge 
