@@ -24,7 +24,7 @@ Engine's automatic regulation can be activated or deactivated with the activatio
 - Line on the Relay Common (COM)
 - Normally Open (NO) of the Relay from the input Load directly to the Load
 
-- ## How to wire the bypass relay (Channel 3)
+## How to wire the bypass relay (Channel 3)
 
 - Live on the Bypass Relay Common (COM) and on the Relay to the Live Input of the Regulator
 - Normally Closed (NC) floating
