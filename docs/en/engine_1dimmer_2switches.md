@@ -29,7 +29,7 @@ Engine's automatic regulation can be activated or deactivated with the activatio
 
 ## Wiring schema example
 
-
+![Wiring schema example for water heater](images/3ResistorsWaterHeaterExample.svg)
 
 ## Configuration
 
