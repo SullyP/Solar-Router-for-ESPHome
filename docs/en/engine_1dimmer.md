@@ -38,6 +38,7 @@ packages:
 ```
 
 When this package is used it is required to define `green_led_pin` and `yellow_led_pin` in `vars` section as show in the upper example.
+
 * `xxx_led_inverted` can define is led is active on high or low signal and is optional.
 * `hide_regulators` allow to hide or show regulators sensors from HA and is optionnal.
 * `hide_leds` allow to hide or show leds values from HA and is optionnal.

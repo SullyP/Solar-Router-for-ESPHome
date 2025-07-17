@@ -2,7 +2,7 @@
 
 This package implements the engine of the solar router which determines when and how much energy has to be diverted to three loads using three channels, or a single load with three channels like a water heater with three heating resistors, with the third channel having bypass functionality for maximum efficiency.
 
-The engine uses three relays to control different loads, with the third relay having an additional regulator for fine-grained power control. The loads are activated sequentially as more power becomes available:
+The engine uses three relays to control different loads, with an additional regulator for fine-grained power control. The loads are activated sequentially as more power becomes available:
 
 1. First channel: Relay 1 (On/Off control)
 2. Second channel: Relay 2 (On/Off control)
@@ -24,7 +24,7 @@ Engine's automatic regulation can be activated or deactivated with the activatio
 - Line on the Relay Common (COM)
 - Normally Open (NO) of the Relay from the input Load directly to the Load
 
-## How to wire the bypass relay (Channel 3)
+## How to wire the regulator and the bypass relay (Channel 3)
 
 - Live on the Bypass Relay Common (COM) and on the Relay to the Live Input of the Regulator
 - Normally Closed (NC) floating
@@ -64,6 +64,19 @@ When this package is used it is required to define `green_led_pin` and `yellow_l
 
 !!! note "Power Distribution"
     The engine divides the total available power into three equal portions (33.33% each). This allows for smooth transitions between different power levels and efficient distribution of excess solar power across multiple loads. 
+
+!!! tip "Bypass tempo adjustement"
+    The Bypass Tempo determines how many consecutive regulations at 33.33%, 66.66% or 100% are needed before activating the _bypass_ relay. A lower value will make the bypass more reactive but might cause more frequent switching (flickering). Because there's roughly 1 regulation per second, Bypass Tempo can be approximated as the time in second with the regulator at 33.33%, 66.66% or 100% before which relay are activated.
+
+![HA](images/countdown_engine_1dimmer_2switch_1bypass.png){ align=left }
+!!! note ""
+    **Sensors**
+    
+    * ***Countdown for relay no. X*** 
+        For each relay, the current countdown is displayed.
+        Initially the countdown is equal to the tempo bypass value, then with each energy regulation where the controller is at 100% the countdown is reduced, finally when the countdown is equal to zero the relay is activated.
+    * ***Regulator opening*** 
+        Hidden by default (see `hide_regulators`), displays the regulator level (TRIAC or SSR).
 
 This package requires the use of the Regulator Relay package AND a regulator package (TRIAC or SSR). Do not forget to also include them.
 

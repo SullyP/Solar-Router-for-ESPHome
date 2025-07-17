@@ -57,14 +57,27 @@ packages:
 ```
 Il est necessaire de définir `green_led_pin` et `yellow_led_pin` dans la section `vars` comme montré dans l'exemple ci-dessus.
  
- * * Le paramètre `xxx_led_inverted` permet de définir si la LED est active sur niveau haut ou bas. Ce paramètre est optionnel.
+ * Le paramètre `xxx_led_inverted` permet de définir si la LED est active sur niveau haut ou bas. Ce paramètre est optionnel.
  * Le paramètre `hide_regulators` permet de définir si le capteur de régulateur est affiché dans HA. Ce paramètre est optionnel.
  * Le paramètre `hide_leds` permet de définir si les valeurs des leds sont affichées dans HA. Ce paramètre est optionnel.
+
+!!! note "Distribution de la puissance"
+    Le moteur divise la puissance totale disponible en trois parties égales (33,33 % chacune). Cela permet des transitions en douceur entre les différents niveaux de puissance et une distribution efficace de l'énergie solaire excédentaire sur plusieurs charges.
 
 !!! tip "Ajustement du Bypass tempo"
     Le `Bypass tempo` détermine combien de régulations consécutives à 33.33%, 66.66% ou 100% sont nécessaires avant d'activer le relais de bypass. Une valeur plus basse rendra le bypass plus réactif mais pourrait causer des commutations plus fréquentes (scintillement). Comme il y a environ 1 régulation par seconde, `Bypass tempo` peut être approximé comme le temps en secondes avec le régulateur à 33.33% ou 66.66%  ou 100% avant que le relais de bypass ne soit activé.
 
-Ce paquet nécessite l'utilisation du package Relais régulateur ET d'un package régulateur (TRIAC ou SSR). N'oubliez pas de les inclure également.
+![HA](images/countdown_engine_1dimmer_2switch_1bypass.png){ align=left }
+!!! note ""
+    **Capteurs**
+    
+    * ***Compte à rebours du relai n° X***  
+      Pour chaque relai on affiche le compte à rebours en cours.
+      Au départ le compte à rebours est égale à la valeur du bypass tempo, puis à chaque régulation d'énergie où le régulateur est à 100% on diminue le compte à rebours, enfin lorsque le compte à rebours est égale à zéro on active le relai.
+    * ***Ouverture du régulateur***  
+      Caché par défaut (voir `hide_regulators`), permet d'affiché le niveau du régulateur (TRIAC ou SSR).
+
+Ce paquet nécessite l'utilisation du package Relais ET d'un package régulateur (TRIAC ou SSR). N'oubliez pas de les inclure également.
 
 Vous trouverez ci-dessous l'exemple de configuration pour les relais :
 
