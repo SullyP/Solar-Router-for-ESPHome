@@ -72,7 +72,6 @@ When this package is used it is required to define `green_led_pin` and `yellow_l
     * ***Regulator opening*** 
         Hidden by default (see `hide_regulators`), displays the regulator level (TRIAC or SSR).
 
-Translated with DeepL.com (free version)
 
 This package requires the use of the Regulator Relay package AND a regulator package (TRIAC or SSR). Do not forget to also include them.
 
